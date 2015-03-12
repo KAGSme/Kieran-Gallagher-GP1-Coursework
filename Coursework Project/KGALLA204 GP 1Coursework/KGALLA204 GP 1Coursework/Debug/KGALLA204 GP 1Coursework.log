@@ -1,0 +1,12 @@
+﻿Build started 12/03/2015 01:42:53.
+     1>Project "D:\Games Development\Games Programming 1\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>d:\games development\games programming 1\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\main.cpp(65): error C2228: left of '.createTexture' must have class/struct/union
+                 type is 'cTexture [4]'
+     1>Done Building Project "D:\Games Development\Games Programming 1\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.36
