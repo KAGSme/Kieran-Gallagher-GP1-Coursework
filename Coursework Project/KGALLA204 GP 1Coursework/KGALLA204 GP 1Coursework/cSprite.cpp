@@ -18,6 +18,9 @@ cSprite::cSprite() 			// Default constructor
 	cSprite::spritePos2D.x = 0;
 	cSprite::spritePos2D.y = 0;
 	cSprite::setSpriteTexCoordData();
+	cSprite::spriteTranslation = glm::vec2(0.0f, 0.0f);
+	cSprite::spriteScaling = glm::vec2(1.0f, 1.0f);
+	cSprite::spriteRotation = 0.0f;
 }
 /*
 cSprite::cSprite(D3DXVECTOR3 sPosition, LPDIRECT3DDEVICE9 pd3dDevice, LPCSTR theFilename) // Constructor
@@ -78,15 +81,40 @@ void cSprite::setTexture(GLuint GLtexID)  // set the image of the sprite
 	GLTextureID = GLtexID;
 }
 
+/*
+=================================================================================
+set the amount of movement on the x & y axis
+=================================================================================
+*/
+void cSprite::setSpriteTranslation(glm::vec2 translation)
+{
+	spriteTranslation = translation;
+}
+
+/*
+=================================================================================
+get the amount of movement on the x & y axis
+=================================================================================
+*/
+glm::vec2 cSprite::getSpriteTranslation()
+{
+	return spriteTranslation;
+}
 
 void cSprite::render()
 {
+	glPushMatrix();
+
+	glTranslatef(spriteTranslation.x, spriteTranslation.y, 0.0f);
+	glRotatef(spriteRotation, 0.0f, 0.0f, 1.0f);
+	glScalef(spriteScaling.x, spriteScaling.y, 1.0f);
+
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, GLTextureID); // Binding of GLtexture name 
 
 	glBegin(GL_QUADS);
-		glColor3f(255.0f, 255.0f, 255.0f); //flush with white
-		glTexCoord2f(spriteTexCoordData[0].x, spriteTexCoordData[0].y); //providing uv mapping
+		glColor3f(255.0f, 255.0f, 255.0f);
+		glTexCoord2f(spriteTexCoordData[0].x, spriteTexCoordData[0].y);
 		glVertex2f(spritePos2D.x, spritePos2D.y);
 		glTexCoord2f(spriteTexCoordData[1].x, spriteTexCoordData[1].y);
 		glVertex2f(spritePos2D.x + textureWidth, spritePos2D.y);
@@ -94,8 +122,11 @@ void cSprite::render()
 		glVertex2f(spritePos2D.x + textureWidth, spritePos2D.y + textureHeight);
 		glTexCoord2f(spriteTexCoordData[3].x, spriteTexCoordData[3].y);
 		glVertex2f(spritePos2D.x, spritePos2D.y + textureHeight);
+
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
+
+	glPopMatrix();
 }
 void cSprite::setSpriteTexCoordData()
 {

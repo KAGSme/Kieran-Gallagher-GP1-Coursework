@@ -43,5 +43,11 @@ public:
 	//LPDIRECT3DTEXTURE9 getTexture();  // Return the sprites current image
 	void setTexture(GLuint GLtexID);  // set the image of the sprite
 	void setTextureDimensions(int texWidth, int textHeight);
+	void setSpriteTranslation(glm::vec2 translation); // Set the amount of movement on the x & y axis
+	glm::vec2 getSpriteTranslation();  // return the amount of movement on the x & y axis
+	void setSpriteCentre(); // Set the sprites centre point
+	glm::vec2 getSpriteCentre();  // return the sprites centre point
+	void setSpriteRotation(float angle);      // set the rotation for the sprite
+	float getSpriteRotation();      // return the rotation for the sprite
 
 };

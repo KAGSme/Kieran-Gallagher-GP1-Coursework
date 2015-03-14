@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 {
 	//Set our window settings, this is currently dependant on how many lanes we want to have in the game
 
-	const int lanes = 4;
+	const int lanes = 1;
 	const int windowWidth = 1600;
 	const int windowHeight = 600;
 	const int windowBPP = 16;
@@ -89,10 +89,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	texturePlayer.createTexture("ArtAssets\\PlayerCar.png");
 	cPlayerCar playerCar;
 	playerCar.attachInputMgr(theInputMgr);
-	playerCar.setSpritePos(glm::vec2(windowWidth / 2, 0.0f));
+	playerCar.setSpritePos(glm::vec2(windowWidth / 2, 400.0f));
+	playerCar.setSpriteTranslation(glm::vec2(5.0f, 0.0f));
 	playerCar.setTexture(texturePlayer.getTexture());
 	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
-	//playerCar.setSpriteCentre();
 
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false

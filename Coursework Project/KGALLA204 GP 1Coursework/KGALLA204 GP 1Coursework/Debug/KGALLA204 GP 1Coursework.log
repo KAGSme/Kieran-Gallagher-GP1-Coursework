@@ -1,18 +1,11 @@
-﻿Build started 14/03/2015 14:30:17.
+﻿Build started 14/03/2015 16:15:20.
      1>Project "D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt cBkGround.cpp cInputMgr.cpp cPlayerCar.cpp cSprite.cpp cTexture.cpp cWNDManager.cpp main.cpp
-         cPlayerCar.cpp
-         Generating Code...
-         Compiling...
-         cSprite.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt cBkGround.cpp main.cpp
+         cBkGround.cpp
          Generating Code...
          Skipping... (no relevant changes detected)
          main.cpp
-         cWNDManager.cpp
-         cTexture.cpp
-         cInputMgr.cpp
-         cBkGround.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.lib" /MACHINE:X86 Debug\cBkGround.obj
          Debug\cInputMgr.obj
@@ -32,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.88
+Time Elapsed 00:00:01.50
