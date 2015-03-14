@@ -10,6 +10,8 @@
 #include "cWNDManager.h"
 #include "cInputMgr.h"
 #include "cSprite.h"
+#include "cBkGround.h"
+#include "cPlayerCar.h"
 
 int WINAPI WinMain(HINSTANCE hInstance,
 					HINSTANCE hPrevInstance,
@@ -19,7 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//Set our window settings, this is currently dependant on how many lanes we want to have in the game
 
 	const int lanes = 4;
-	const int windowWidth = 200 * lanes;
+	const int windowWidth = 1600;
 	const int windowHeight = 600;
 	const int windowBPP = 16;
 
@@ -59,16 +61,61 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
 
 	// Create the background texture
-	cTexture textureBkgd[lanes];
+	cTexture textureBkgd[3];
+	textureBkgd[1].createTexture("ArtAssets\\RoadTile.png");
+	textureBkgd[2].createTexture("ArtAssets\\RoadTileEdgeRight.png");
+	textureBkgd[0].createTexture("ArtAssets\\RoadTileEdgeLeft.png");
+
+	cBkGround spriteBkgd[lanes];
 	for (int lane = 0; lane < lanes; lane++)
 	{
-		textureBkgd.createTexture("ArtAssets//RoadTile.png");
+		spriteBkgd[lane].setSpritePos(glm::vec2((textureBkgd[1].getTWidth() * lane) + windowWidth / 2 - (textureBkgd[1].getTWidth() * lanes) / 2, 0.0f));
+		spriteBkgd[lane].setTexture(textureBkgd[1].getTexture());
+		spriteBkgd[lane].setTextureDimensions(textureBkgd[1].getTWidth(), textureBkgd[1].getTHeight());
 	}
+
+	// setting up the road tiles that appear at the ends of the screen
+	cBkGround spriteBkgdEnds[2];
+	spriteBkgdEnds[0].setSpritePos(glm::vec2(spriteBkgd[0].getSpritePos().x - textureBkgd[0].getTWidth(), 0.0f));
+	spriteBkgdEnds[0].setTexture(textureBkgd[0].getTexture());
+	spriteBkgdEnds[0].setTextureDimensions(textureBkgd[0].getTWidth(), textureBkgd[0].getTHeight());
+	
+	spriteBkgdEnds[1].setSpritePos(glm::vec2(spriteBkgd[lanes - 1].getSpritePos().x + textureBkgd[1].getTWidth(), 0.0f));
+	spriteBkgdEnds[1].setTexture(textureBkgd[2].getTexture());
+	spriteBkgdEnds[1].setTextureDimensions(textureBkgd[2].getTWidth(), textureBkgd[2].getTHeight());
+
+	// Instantiating the Player controlled Car
+	cTexture texturePlayer;
+	texturePlayer.createTexture("ArtAssets\\PlayerCar.png");
+	cPlayerCar playerCar;
+	playerCar.attachInputMgr(theInputMgr);
+	playerCar.setSpritePos(glm::vec2(windowWidth / 2, 0.0f));
+	playerCar.setTexture(texturePlayer.getTexture());
+	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
+	//playerCar.setSpriteCentre();
+
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false
 	while (pgmWNDMgr->isWNDRunning())
 	{
+		pgmWNDMgr->processWNDEvents(); //Process any window events
 
+		//We get the time that passed since the last frame
+		float elapsedTime = pgmWNDMgr->getElapsedSeconds();
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		for (int lane = 0; lane < lanes; lane++)
+		{
+			spriteBkgd[lane].render();
+		}
+		spriteBkgdEnds[0].render();
+		spriteBkgdEnds[1].render();
+
+		playerCar.update(elapsedTime);
+		playerCar.render();
+
+		pgmWNDMgr->swapBuffers();
+		theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
 	}
 
 	theOGLWnd.shutdown(); //Free any resources

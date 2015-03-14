@@ -11,7 +11,7 @@ cSprite.h
 
 class cSprite
 {
-private:
+protected:
 	// position, rotation, scalling
 	glm::vec2 spritePos2D;
 	glm::vec2 spriteTranslation;

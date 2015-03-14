@@ -77,6 +77,7 @@
     <ClCompile Include="cWNDManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="cPlayerCar.cpp" />
     <ClCompile Include="windowOGL.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +88,7 @@
     <ClInclude Include="cWNDManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameConstants.h" />
+    <ClInclude Include="cPlayerCar.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="windowOGL.h" />
   </ItemGroup>

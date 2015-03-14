@@ -34,4 +34,4 @@
 using namespace std;
 
 //Define the string to appear in the top left corner of the window
-#define WINDOW_TITLE "Two hoodlums in a valley"
+#define WINDOW_TITLE "Speedy Traffic"
