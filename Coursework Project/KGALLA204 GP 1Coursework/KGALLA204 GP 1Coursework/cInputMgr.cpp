@@ -204,7 +204,7 @@ void cInputMgr::setRightMouseBtn(bool b)
    Return mouse X position
 =============================================================================
 */
-float  cInputMgr::getMouseXPos()
+int  cInputMgr::getMouseXPos()
 {
 	return mousePos.x;
 }
@@ -213,7 +213,7 @@ float  cInputMgr::getMouseXPos()
    Return mouse Y position
 =============================================================================
 */
-float  cInputMgr::getMouseYPos()
+int  cInputMgr::getMouseYPos()
 {
 	return mousePos.y;
 }

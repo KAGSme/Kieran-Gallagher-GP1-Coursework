@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 {
 	//Set our window settings, this is currently dependant on how many lanes we want to have in the game
 
-	const int lanes = 1;
+	const int lanes = 6;
 	const int windowWidth = 1600;
 	const int windowHeight = 600;
 	const int windowBPP = 16;
@@ -73,16 +73,18 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		spriteBkgd[lane].setTexture(textureBkgd[1].getTexture());
 		spriteBkgd[lane].setTextureDimensions(textureBkgd[1].getTWidth(), textureBkgd[1].getTHeight());
 	}
-
+	int boundriesX[2];
 	// setting up the road tiles that appear at the ends of the screen
 	cBkGround spriteBkgdEnds[2];
 	spriteBkgdEnds[0].setSpritePos(glm::vec2(spriteBkgd[0].getSpritePos().x - textureBkgd[0].getTWidth(), 0.0f));
 	spriteBkgdEnds[0].setTexture(textureBkgd[0].getTexture());
 	spriteBkgdEnds[0].setTextureDimensions(textureBkgd[0].getTWidth(), textureBkgd[0].getTHeight());
-	
+	boundriesX[0] = spriteBkgd[0].getSpritePos().x;
+
 	spriteBkgdEnds[1].setSpritePos(glm::vec2(spriteBkgd[lanes - 1].getSpritePos().x + textureBkgd[1].getTWidth(), 0.0f));
 	spriteBkgdEnds[1].setTexture(textureBkgd[2].getTexture());
 	spriteBkgdEnds[1].setTextureDimensions(textureBkgd[2].getTWidth(), textureBkgd[2].getTHeight());
+	boundriesX[1] = spriteBkgd[lanes - 1].getSpritePos().x + textureBkgd[1].getTWidth();
 
 	// Instantiating the Player controlled Car
 	cTexture texturePlayer;
@@ -93,7 +95,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	playerCar.setSpriteTranslation(glm::vec2(5.0f, 0.0f));
 	playerCar.setTexture(texturePlayer.getTexture());
 	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
-
+	playerCar.setSpriteCentre();
+	playerCar.SetMaxSpeedX(5.0f);
+	playerCar.SetAccelerationX(100.0f);
+	playerCar.SetBoundriesX(boundriesX[0], boundriesX[1]);
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false
 	while (pgmWNDMgr->isWNDRunning())

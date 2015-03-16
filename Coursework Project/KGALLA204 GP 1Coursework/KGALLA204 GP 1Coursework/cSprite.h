@@ -5,8 +5,9 @@ cSprite.h
 - Header file for the Sprite class
 =================
 */
-#pragma once
-
+#ifndef _CSPRITE_H
+#define _CSPRITE_H
+#include "cInputMgr.h"
 #include "GameConstants.h"
 
 class cSprite
@@ -21,6 +22,8 @@ protected:
 	float spriteRotation;
 	glm::mat4x4 spriteTransformMatrix;
 	RECT boundingRect;
+	float m_Radius;
+	bool mActive;
 
 	//texturing
 	glm::vec2 spriteVertexData[4];
@@ -30,17 +33,18 @@ protected:
 	int textureWidth;
 	int textureHeight;
 	GLuint GLTextureID;
+	cInputMgr* m_InputMgr;
 
-	//cD3DXTexture spriteTexture;
+	float lengthSQRD(glm::vec2 theLength);
+
 public:
 	cSprite();			// Default constructor
-	//cSprite(glm::vec3 sPosition, LPDIRECT3DDEVICE9 pd3dDevice, LPCSTR theFilename); // Constructor
 	~cSprite();			// Destructor
-	void render();
+	virtual void render();		// Default render function
 	void setSpriteTexCoordData();
 	glm::vec2 getSpritePos();  // Return the sprites current position
 	void setSpritePos(glm::vec2 sPosition); // set the position of the sprite
-	//LPDIRECT3DTEXTURE9 getTexture();  // Return the sprites current image
+	GLuint getTexture();  // Return the sprites current image
 	void setTexture(GLuint GLtexID);  // set the image of the sprite
 	void setTextureDimensions(int texWidth, int textHeight);
 	void setSpriteTranslation(glm::vec2 translation); // Set the amount of movement on the x & y axis
@@ -49,5 +53,15 @@ public:
 	glm::vec2 getSpriteCentre();  // return the sprites centre point
 	void setSpriteRotation(float angle);      // set the rotation for the sprite
 	float getSpriteRotation();      // return the rotation for the sprite
-
+	void setActive(bool sActive);			// Set the sprite to active.
+	bool isActive();						// Determine if the sprite is active.
+	void setMdlRadius();
+	float getMdlRadius();
+	void attachInputMgr(cInputMgr* inputMgr);  // Attach the Input Manager
+	virtual void update(float deltaTime) = 0;
+	void setBoundingRect(RECT* pRect);		// Determine the bounding rectangle for the sprite
+	RECT getBoundingRect();		// Determine the bounding rectangle for the sprite
+	bool collidedWith(RECT thisSprite, RECT otherSpritePos);	// Check for collisions
+	bool SphereSphereCollision(glm::vec2 spritePosition, float spriteRadius);
 };
+#endif

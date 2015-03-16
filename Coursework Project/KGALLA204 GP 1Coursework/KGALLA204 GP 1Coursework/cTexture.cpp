@@ -2,15 +2,15 @@
 =================
 cTexture.cpp
 - CPP file for class definition - IMPLEMENTATION
-- CPP file for the cD3DXTextureMgr class
+- CPP file for the cTexture class
 =================
 */
 #include "cTexture.h"
 
 /*
 =================
-- Data constructor initializes the cD3DXTextureMgr object
-- Is always called, thus ensures all cD3DXTextureMgr objects are in a consistent state.
+- Data constructor initializes the OpenGL Texture ID object
+- Is always called, thus ensures all OpenGL Texture ID objects are in a consistent state.
 =================
 */
 cTexture::cTexture()

@@ -18,15 +18,16 @@ void cPlayerCar::render()
 	glBindTexture(GL_TEXTURE_2D, GLTextureID); // Binding of GLtexture name 
 
 	glBegin(GL_QUADS);
-		glColor3f(255.0f, 255.0f, 255.0f); //flush with white
-		glTexCoord2f(spriteTexCoordData[0].x, spriteTexCoordData[0].y); //providing uv mapping
-		glVertex2f(spritePos2D.x, spritePos2D.y);
+		glColor3f(255.0f, 255.0f, 255.0f);
+		glTexCoord2f(spriteTexCoordData[0].x, spriteTexCoordData[0].y);
+		glVertex2f(-(textureWidth / 2), -(textureHeight / 2));
 		glTexCoord2f(spriteTexCoordData[1].x, spriteTexCoordData[1].y);
-		glVertex2f(spritePos2D.x + textureWidth, spritePos2D.y);
+		glVertex2f((textureWidth / 2), -(textureHeight / 2));
 		glTexCoord2f(spriteTexCoordData[2].x, spriteTexCoordData[2].y);
-		glVertex2f(spritePos2D.x + textureWidth, spritePos2D.y + textureHeight);
+		glVertex2f((textureWidth / 2), (textureHeight / 2));
 		glTexCoord2f(spriteTexCoordData[3].x, spriteTexCoordData[3].y);
-		glVertex2f(spritePos2D.x, spritePos2D.y + textureHeight);
+		glVertex2f(-(textureWidth / 2), (textureHeight / 2));
+
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 
@@ -41,20 +42,39 @@ Update sprite position
 
 void cPlayerCar::update(float deltaTime)
 {
-	if (m_InputMgr->isKeyDown(VK_RIGHT))
+
+	if (m_InputMgr->isKeyDown(VK_RIGHT) && speedX <= maxSpeedX && spritePos2D.x < boundryX[1])
 	{
+		speedX += accelerationX * deltaTime;
 		spriteRotation = 10.0f;
-		spritePos2D.x += speedX;
 	}
 
-	if (m_InputMgr->isKeyDown(VK_LEFT))
+	if (m_InputMgr->isKeyDown(VK_LEFT) && speedX >= -maxSpeedX && spritePos2D.x > boundryX[0])
 	{
+		speedX -= accelerationX * deltaTime;
 		spriteRotation = -10.0f;
-		spriteCentre.x -= speedX;
 	}
+
+	/*if (!m_InputMgr->wasKeyPressed(VK_RIGHT) && !m_InputMgr->wasKeyPressed(VK_LEFT))
+	{
+		spriteRotation = 0.0f;
+	}*/
+
+		spritePos2D.x += speedX;
 }
 
-void cPlayerCar::attachInputMgr(cInputMgr* InputMgr)
+void cPlayerCar::SetAccelerationX(float accelX)
 {
-	m_InputMgr = InputMgr;
+	accelerationX = accelX;
+}
+
+void cPlayerCar::SetMaxSpeedX(float mSpeedX)
+{
+	maxSpeedX = mSpeedX;
+}
+
+void cPlayerCar::SetBoundriesX(int boundriesX1, int boundriesX2)
+{
+	boundryX[0] = boundriesX1;
+	boundryX[1] = boundriesX2;
 }

@@ -12,7 +12,6 @@ cWNDManager.cpp
 #include "wglext.h"
 #include "windowOGL.h"
 #include "GameConstants.h"
-#include "Game.h"
 
 cWNDManager* cWNDManager::pInstance = NULL;
 
@@ -245,7 +244,10 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 		{
 			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
 		}
+		pInstance->m_InputMgr->keyDown(wParam);
+		return 0;
 	}
+
 		break;
 	default:
 		break;

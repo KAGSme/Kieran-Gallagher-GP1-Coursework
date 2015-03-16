@@ -5,8 +5,8 @@ cTexture.h
 - Header file for the cD3DXTexture class
 =================
 */
-#pragma once
-
+#ifndef _CTEXTURE_H
+#define _CTEXTURE_H
 #include "GameConstants.h"
 
 class cTexture
@@ -28,3 +28,4 @@ public:
 	GLsizei getTWidth();						// Return width of texture;
 	GLsizei getTHeight();						// Return height of texture;
 };
+#endif

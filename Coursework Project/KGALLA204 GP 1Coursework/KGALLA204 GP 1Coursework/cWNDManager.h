@@ -4,14 +4,13 @@ cWNDManager.h
 ==========================================================================
 */
 
-
-#pragma once
 #ifndef _WNDMANAGER_H
 #define _WNDMANAGER_H
 
 #include <windows.h>
 #include "windowOGL.h"
 #include "cInputMgr.h"
+
 
 class cWNDManager
 {
@@ -42,7 +41,6 @@ private:
 	static cWNDManager* pInstance;
 
 	windowOGL* m_winOGL; //A link to the OGL window
-
 	cInputMgr* m_InputMgr; //A link to the Input Manager
 
 	bool m_isRunning; //Is the window still running?
@@ -59,5 +57,6 @@ private:
 
 	HWND m_hwnd; //Window handle
 	HDC m_hdc; //Device context
+
 };
 #endif

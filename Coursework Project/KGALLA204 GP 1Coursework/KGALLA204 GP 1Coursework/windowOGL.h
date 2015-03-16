@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _WINDOWOGL_H
+#define _WINDOWOGL_H
 
 #include <windows.h>
 #include "GL/glut.h"
@@ -15,3 +16,5 @@ public:
     void onResize(int width, int height);
 
 };
+
+#endif
