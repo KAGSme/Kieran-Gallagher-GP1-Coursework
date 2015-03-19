@@ -96,8 +96,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	playerCar.setTexture(texturePlayer.getTexture());
 	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
 	playerCar.setSpriteCentre();
-	playerCar.SetMaxSpeedX(5.0f);
-	playerCar.SetAccelerationX(100.0f);
+	playerCar.SetSpeedX(150.0f);
 	playerCar.SetBoundriesX(boundriesX[0], boundriesX[1]);
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false
@@ -106,21 +105,24 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		pgmWNDMgr->processWNDEvents(); //Process any window events
 
 		//We get the time that passed since the last frame
-		float elapsedTime = pgmWNDMgr->getElapsedSeconds();
+		double elapsedTime = pgmWNDMgr->getElapsedSeconds();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		for (int lane = 0; lane < lanes; lane++)
 		{
 			spriteBkgd[lane].render();
+			spriteBkgd[lane].update(elapsedTime);
 		}
+		spriteBkgdEnds[0].update(elapsedTime);
 		spriteBkgdEnds[0].render();
+		spriteBkgdEnds[1].update(elapsedTime);
 		spriteBkgdEnds[1].render();
 
 		playerCar.update(elapsedTime);
 		playerCar.render();
 
 		pgmWNDMgr->swapBuffers();
-		theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
+		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER);
 	}
 
 	theOGLWnd.shutdown(); //Free any resources

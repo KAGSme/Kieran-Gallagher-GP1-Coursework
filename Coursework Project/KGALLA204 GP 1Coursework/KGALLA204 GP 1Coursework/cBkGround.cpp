@@ -7,7 +7,7 @@ cRocket.cpp
 #include "cBkGround.h"
 
 void cBkGround::render()
-{
+{ 
 	cSprite::render();
 }
 /*
@@ -15,7 +15,13 @@ void cBkGround::render()
 Update the sprite position
 =================================================================
 */
-
-void cBkGround::update(float deltaTime)
+float scrollSpeed = 2;
+void cBkGround::update(double deltaTime)
 {
+	
+	spriteTexCoordData[0] -= glm::vec2(0, scrollSpeed * deltaTime);
+	spriteTexCoordData[1] -= glm::vec2(0, scrollSpeed * deltaTime);
+	spriteTexCoordData[2] -= glm::vec2(0, scrollSpeed * deltaTime);
+	spriteTexCoordData[3] -= glm::vec2(0, scrollSpeed * deltaTime);
+
 }

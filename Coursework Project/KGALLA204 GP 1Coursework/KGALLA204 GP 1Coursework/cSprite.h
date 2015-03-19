@@ -58,7 +58,7 @@ public:
 	void setMdlRadius();
 	float getMdlRadius();
 	void attachInputMgr(cInputMgr* inputMgr);  // Attach the Input Manager
-	virtual void update(float deltaTime) = 0;
+	virtual void update(double deltaTime) = 0;
 	void setBoundingRect(RECT* pRect);		// Determine the bounding rectangle for the sprite
 	RECT getBoundingRect();		// Determine the bounding rectangle for the sprite
 	bool collidedWith(RECT thisSprite, RECT otherSpritePos);	// Check for collisions

@@ -38,6 +38,7 @@ public:
 	bool wasKeyPressed(int vkey);				// Return true if the specified VIRTUAL KEY has been pressed
 	bool anyKeyPressed();						// Return true if any key was pressed
 	void clearKeyPress(int vkey);				// Clear the specified key press
+	void clearKeyDown(int vkey);				// Clear the specified key down
 	void clearBuffers(BYTE bufferToClear);		// Clear buffers, single or combined
 	void mouseXY(LPARAM);						// Reads mouse screen position into mouseX, mouseY
 	void setLeftMouseBtn(bool b);				// Save state of mouse button

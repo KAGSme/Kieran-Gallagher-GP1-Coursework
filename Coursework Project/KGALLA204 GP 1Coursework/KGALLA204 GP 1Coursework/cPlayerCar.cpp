@@ -40,37 +40,44 @@ Update sprite position
 ===========================================
 */
 
-void cPlayerCar::update(float deltaTime)
+void cPlayerCar::update(double deltaTime)
 {
 
-	if (m_InputMgr->isKeyDown(VK_RIGHT) && speedX <= maxSpeedX && spritePos2D.x < boundryX[1])
+	if (m_InputMgr->isKeyDown(VK_RIGHT) && spritePos2D.x < boundryX[1])
 	{
-		speedX += accelerationX * deltaTime;
+		spritePos2D.x += speedX * deltaTime;
 		spriteRotation = 10.0f;
 	}
 
-	if (m_InputMgr->isKeyDown(VK_LEFT) && speedX >= -maxSpeedX && spritePos2D.x > boundryX[0])
+	if (m_InputMgr->isKeyDown(VK_LEFT) && spritePos2D.x > boundryX[0])
 	{
-		speedX -= accelerationX * deltaTime;
+		spritePos2D.x -= speedX * deltaTime;
 		spriteRotation = -10.0f;
 	}
 
-	/*if (!m_InputMgr->wasKeyPressed(VK_RIGHT) && !m_InputMgr->wasKeyPressed(VK_LEFT))
+	//Clearing Key down Buffers of specific keys 
+
+	if (m_InputMgr->wasKeyPressed(VK_RIGHT))
 	{
-		spriteRotation = 0.0f;
-	}*/
+		m_InputMgr->clearKeyDown(VK_LEFT);
+	}
 
-		spritePos2D.x += speedX;
+	if (m_InputMgr->wasKeyPressed(VK_LEFT))
+	{
+		m_InputMgr->clearKeyDown(VK_RIGHT);
+	}
+
+	/*
+	if (!m_InputMgr->wasKeyPressed(VK_LEFT) && !m_InputMgr->wasKeyPressed(VK_RIGHT))
+	{
+		m_InputMgr->clearBuffers(m_InputMgr->KEYS_DOWN_BUFFER);
+	}
+	*/
 }
 
-void cPlayerCar::SetAccelerationX(float accelX)
+void cPlayerCar::SetSpeedX(float velX)
 {
-	accelerationX = accelX;
-}
-
-void cPlayerCar::SetMaxSpeedX(float mSpeedX)
-{
-	maxSpeedX = mSpeedX;
+	speedX = velX;
 }
 
 void cPlayerCar::SetBoundriesX(int boundriesX1, int boundriesX2)
