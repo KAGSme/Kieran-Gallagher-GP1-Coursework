@@ -70,13 +70,6 @@ void cPlayerCar::update(double deltaTime)
 	{
 		m_InputMgr->clearKeyDown(VK_RIGHT);
 	}
-
-	/*
-	if (!m_InputMgr->wasKeyPressed(VK_LEFT) && !m_InputMgr->wasKeyPressed(VK_RIGHT))
-	{
-		m_InputMgr->clearBuffers(m_InputMgr->KEYS_DOWN_BUFFER);
-	}
-	*/
 }
 
 void cPlayerCar::SetSpeedX(float velX)
