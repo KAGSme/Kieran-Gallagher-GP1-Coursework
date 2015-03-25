@@ -40,12 +40,6 @@ cInputMgr::cInputMgr()
 		keysPressedBuffer[key] = false;
 	}
 	
-	mousePos.x = 0;                         // screen X
-	mousePos.y = 0;                         // screen Y
-	leftMouseBtn = false;               // true if left mouse button is down
-	middleMouseBtn = false;               // true if middle mouse button is down
-	rightMouseBtn = false;               // true if right mouse button is down
-
 }
 
 /*
@@ -167,93 +161,4 @@ void cInputMgr::clearBuffers(BYTE bufferToClear)
 			keysPressedBuffer[key] = false;
 		}
 	}
-	if (bufferToClear & MOUSE_BUFFER)           // if clear mouse
-	{
-		mousePos.x = 0;
-		mousePos.y = 0;
-	}
 }
-/*
-=============================================================================
-    Reads mouse screen position into mouseX, mouseY
-=============================================================================
-*/
-void cInputMgr::mouseXY(LPARAM lParam)
-{
-	mousePos.x = LOWORD(lParam);
-	mousePos.y = HIWORD(lParam);
-}
-
-/*
-=============================================================================
-   Save state of mouse button
-=============================================================================
-*/
-void cInputMgr::setLeftMouseBtn(bool b)
-{
-	leftMouseBtn = b;
-}
-/*
-=============================================================================
-   Save state of mouse button
-=============================================================================
-*/
-void cInputMgr::setMiddleMouseBtn(bool b)
-{
-	middleMouseBtn = b;
-}
-/*
-=============================================================================
-   Save state of mouse button
-=============================================================================
-*/
-void cInputMgr::setRightMouseBtn(bool b)
-{
-	rightMouseBtn = b;
-}
-/*
-=============================================================================
-   Return mouse X position
-=============================================================================
-*/
-int  cInputMgr::getMouseXPos()
-{
-	return mousePos.x;
-}
-/*
-=============================================================================
-   Return mouse Y position
-=============================================================================
-*/
-int  cInputMgr::getMouseYPos()
-{
-	return mousePos.y;
-}
-/*
-=============================================================================
-   Return state of left mouse button.
-=============================================================================
-*/
-bool cInputMgr::getLeftMouseBtn()
-{
-	return leftMouseBtn;
-}
-/*
-=============================================================================
-   Return state of middle mouse button.
-=============================================================================
-*/
-bool cInputMgr::getMiddleMouseBtn()
-{
-	return middleMouseBtn;
-}
-/*
-=============================================================================
-   Return state of right mouse button.
-=============================================================================
-*/
-bool cInputMgr::getRightMouseBtn()
-{
-	return rightMouseBtn;
-}
-

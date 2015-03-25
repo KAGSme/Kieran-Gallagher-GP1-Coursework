@@ -264,8 +264,8 @@ windowOGL*  cWNDManager::getAttachedWND()
 
 float cWNDManager::getElapsedSeconds()
 {
-	float currentTime = float(GetTickCount()) / 1000.0f;
-	float seconds = float(currentTime - m_lastTime);
+	double currentTime = double(GetTickCount()) / 1000.0f;
+	double seconds = double(currentTime - m_lastTime);
 	m_lastTime = currentTime;
 	return seconds;
 }

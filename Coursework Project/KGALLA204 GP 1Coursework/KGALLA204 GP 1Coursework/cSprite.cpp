@@ -174,12 +174,16 @@ void cSprite::render()
 
 	glBegin(GL_QUADS);
 		glColor3f(255.0f, 255.0f, 255.0f);
+
 		glTexCoord2f(spriteTexCoordData[0].x, spriteTexCoordData[0].y);
 		glVertex2f(0, 0);
+
 		glTexCoord2f(spriteTexCoordData[1].x, spriteTexCoordData[1].y);
 		glVertex2f( textureWidth, 0);
+
 		glTexCoord2f(spriteTexCoordData[2].x, spriteTexCoordData[2].y);
 		glVertex2f(textureWidth, textureHeight);
+
 		glTexCoord2f(spriteTexCoordData[3].x, spriteTexCoordData[3].y);
 		glVertex2f(0, textureHeight);
 

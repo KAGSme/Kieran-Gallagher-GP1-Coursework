@@ -122,7 +122,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		playerCar.render();
 
 		pgmWNDMgr->swapBuffers();
-		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER);
+		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER);	
 	}
 
 	theOGLWnd.shutdown(); //Free any resources
