@@ -239,15 +239,23 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 	}
 		break;
 	case WM_KEYDOWN:
-	{
-		if (wParam == VK_ESCAPE) //If the escape key was pressed
+		switch (wParam)
 		{
-			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
+			case VK_ESCAPE: //If the escape key was pressed
+				DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
+				pInstance->m_InputMgr->keyDown(wParam);
+				return 0;
+				break;
+			case VK_LEFT:
+				pInstance->m_InputMgr->keyDown(wParam);
+				break;
+			case VK_RIGHT:
+				pInstance->m_InputMgr->keyDown(wParam);
+				break;
 		}
-		pInstance->m_InputMgr->keyDown(wParam);
-		return 0;
-	}
-
+		break;
+	case WM_KEYUP:
+		pInstance->m_InputMgr->keyUp(wParam);
 		break;
 	default:
 		break;

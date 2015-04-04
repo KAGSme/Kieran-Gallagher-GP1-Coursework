@@ -58,17 +58,9 @@ void cPlayerCar::update(double deltaTime)
 		spritePos2D.x -= speedX * deltaTime;
 		spriteRotation = -10.0f;
 	}
-
-	//Clearing Key down Buffers of specific keys 
-
-	if (m_InputMgr->wasKeyPressed(VK_RIGHT))
+	if (!m_InputMgr->isKeyDown(VK_LEFT) && !m_InputMgr->isKeyDown(VK_RIGHT))
 	{
-		m_InputMgr->clearKeyDown(VK_LEFT);
-	}
-
-	if (m_InputMgr->wasKeyPressed(VK_LEFT))
-	{
-		m_InputMgr->clearKeyDown(VK_RIGHT);
+		spriteRotation = 0.0f;
 	}
 }
 
@@ -77,7 +69,7 @@ void cPlayerCar::SetSpeedX(float velX)
 	speedX = velX;
 }
 
-void cPlayerCar::SetBoundriesX(int boundriesX1, int boundriesX2)
+void cPlayerCar::SetBoundriesX(float boundriesX1, float boundriesX2)
 {
 	boundryX[0] = boundriesX1;
 	boundryX[1] = boundriesX2;

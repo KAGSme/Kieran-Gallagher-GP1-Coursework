@@ -96,7 +96,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	playerCar.setTexture(texturePlayer.getTexture());
 	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
 	playerCar.setSpriteCentre();
-	playerCar.SetSpeedX(150.0f);
+	playerCar.SetSpeedX(250);
 	playerCar.SetBoundriesX(boundriesX[0], boundriesX[1]);
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false
@@ -122,7 +122,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		playerCar.render();
 
 		pgmWNDMgr->swapBuffers();
-		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER | theInputMgr->KEYS_UP_BUFFER);
+		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER);
 	}
 
 	theOGLWnd.shutdown(); //Free any resources

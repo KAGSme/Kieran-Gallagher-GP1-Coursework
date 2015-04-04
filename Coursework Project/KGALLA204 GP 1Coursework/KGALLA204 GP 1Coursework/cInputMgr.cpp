@@ -39,10 +39,6 @@ cInputMgr::cInputMgr()
 	{
 		keysPressedBuffer[key] = false;
 	}
-	for (int key = 0; key < 256; key++)			// clear key up array
-	{
-		keysUpBuffer[key] = true;
-	}
 	
 }
 
@@ -57,7 +53,6 @@ void cInputMgr::keyDown(WPARAM wParam)
 	{
 		keysDownBuffer[wParam] = true;    // update keysDown array
 		keysPressedBuffer[wParam] = true; // update keysPressed array
-		keysUpBuffer[wParam] = true;	  // update KeysUp array
 	}
 }
 
@@ -83,22 +78,6 @@ bool cInputMgr::isKeyDown(int vkey)
 	if (vkey < 256)
 	{
 		return keysDownBuffer[vkey];
-	}
-	else
-	{
-		return false;
-	}
-}
-/*
-=============================================================================
-Returns true if the specified VIRTUAL KEY is up, otherwise false.
-=============================================================================
-*/
-bool cInputMgr::isKeyUp(int vkey)
-{
-	if (vkey < 256 && keysUpBuffer[vkey] == false)
-	{
-		return true;
 	}
 	else
 	{
@@ -151,18 +130,6 @@ void cInputMgr::clearKeyPress(int vkey)
 }
 /*
 =============================================================================
-Clear the specified key down 
-=============================================================================
-*/
-void cInputMgr::clearKeyDown(int vkey)
-{
-	if (vkey < 256)
-	{
-		keysDownBuffer[vkey] = false;
-	}
-}
-/*
-=============================================================================
    Clear buffers, single or combined
 =============================================================================
 */
@@ -180,13 +147,6 @@ void cInputMgr::clearBuffers(BYTE bufferToClear)
 		for (int key = 0; key < 256; key++)
 		{
 			keysPressedBuffer[key] = false;
-		}
-	}
-	if (bufferToClear & KEYS_UP_BUFFER)    // if clear keys pressed
-	{
-		for (int key = 0; key < 256; key++)
-		{
-			keysPressedBuffer[key] = true;
 		}
 	}
 }
