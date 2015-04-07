@@ -8,6 +8,7 @@ cSprite.h
 #ifndef _CSPRITE_H
 #define _CSPRITE_H
 #include "cInputMgr.h"
+#include "cSoundMgr.h"
 #include "GameConstants.h"
 
 class cSprite
@@ -34,6 +35,7 @@ protected:
 	int textureHeight;
 	GLuint GLTextureID;
 	cInputMgr* m_InputMgr;
+	cSoundMgr* m_SoundMgr;
 
 	float lengthSQRD(glm::vec2 theLength);
 
@@ -58,10 +60,12 @@ public:
 	void setMdlRadius();
 	float getMdlRadius();
 	void attachInputMgr(cInputMgr* inputMgr);  // Attach the Input Manager
+	void attachSoundMgr(cSoundMgr* soundMgr);  // Attach the Sound Manager
 	virtual void update(double deltaTime) = 0;
 	void setBoundingRect(RECT* pRect);		// Determine the bounding rectangle for the sprite
 	RECT getBoundingRect();		// Determine the bounding rectangle for the sprite
 	bool collidedWith(RECT thisSprite, RECT otherSpritePos);	// Check for collisions
 	bool SphereSphereCollision(glm::vec2 spritePosition, float spriteRadius);
+	virtual void renderCollisionBox();				// Use this function to show the collision box
 };
 #endif

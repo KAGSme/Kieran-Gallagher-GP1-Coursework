@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Libraries\DevIL.lib" />
-    <Library Include="Libraries\freeglut.lib" />
-    <Library Include="Libraries\ILU.lib" />
-    <Library Include="Libraries\ILUT.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="cBkGround.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +40,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cFontMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cSoundMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,5 +89,26 @@
     <ClInclude Include="EnemyCar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cFont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cFontMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cSound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cSoundMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libraries\alut.lib" />
+    <Library Include="Libraries\DevIL.lib" />
+    <Library Include="Libraries\freeglut.lib" />
+    <Library Include="Libraries\ftgl.lib" />
+    <Library Include="Libraries\ILU.lib" />
+    <Library Include="Libraries\ILUT.lib" />
+    <Library Include="Libraries\OpenAL32.lib" />
   </ItemGroup>
 </Project>

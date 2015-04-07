@@ -174,16 +174,12 @@ void cSprite::render()
 
 	glBegin(GL_QUADS);
 		glColor3f(255.0f, 255.0f, 255.0f);
-
 		glTexCoord2f(spriteTexCoordData[0].x, spriteTexCoordData[0].y);
 		glVertex2f(0, 0);
-
 		glTexCoord2f(spriteTexCoordData[1].x, spriteTexCoordData[1].y);
 		glVertex2f( textureWidth, 0);
-
 		glTexCoord2f(spriteTexCoordData[2].x, spriteTexCoordData[2].y);
 		glVertex2f(textureWidth, textureHeight);
-
 		glTexCoord2f(spriteTexCoordData[3].x, spriteTexCoordData[3].y);
 		glVertex2f(0, textureHeight);
 
@@ -224,6 +220,15 @@ void cSprite::attachInputMgr(cInputMgr* inputMgr)
 	m_InputMgr = inputMgr;
 }
 /*
+=================================================================
+Attach the sound manager to the sprite
+=================================================================
+*/
+void cSprite::attachSoundMgr(cSoundMgr* soundMgr)
+{
+	m_SoundMgr = soundMgr;
+}
+/*
 =================
 - Determine the bounding rectangle for the sprite.
 =================
@@ -232,7 +237,13 @@ void cSprite::attachInputMgr(cInputMgr* inputMgr)
 void cSprite::setBoundingRect(RECT* pRect)
 {
 	glm::vec2 sPos = getSpritePos();
-	SetRect(pRect, (int)sPos.x, (int)sPos.y, (int)(textureWidth + sPos.x), (int)(textureHeight + sPos.y));
+	RECT theBoundingRect;
+	theBoundingRect.left = sPos.x;
+	theBoundingRect.top = sPos.y;
+	theBoundingRect.right = textureWidth + sPos.x;
+	theBoundingRect.bottom = textureHeight + sPos.y;
+
+	SetRect(pRect, (int)theBoundingRect.left, (int)theBoundingRect.top, (int)theBoundingRect.right, (int)theBoundingRect.bottom);
 }
 /*
 =================
@@ -277,4 +288,34 @@ bool cSprite::SphereSphereCollision(glm::vec2 spritePosition, float spriteRadius
 float cSprite::lengthSQRD(glm::vec2 theLength)
 {
 	return (theLength.x * theLength.x) + (theLength.y * theLength.y);
+}
+/*
+==========================================================================
+Use this method to show the collision box.
+==========================================================================
+*/
+void cSprite::renderCollisionBox()
+{
+	glPushMatrix();
+
+	glTranslatef(boundingRect.left, boundingRect.top, 0.0f);
+	glRotatef(spriteRotation, 0.0f, 0.0f, 1.0f);
+	glScalef(spriteScaling.x, spriteScaling.y, 1.0f);
+	
+	glColor3f(255.0f, 0.0f, 0.0f);
+	//glBegin(GL_LINE_LOOP);
+	//glVertex2f(0, 0);
+	//glVertex2f(0, boundingRect.bottom);
+	//glVertex2f(boundingRect.right, boundingRect.bottom);
+	//glVertex2f(boundingRect.right, 0);
+	glBegin(GL_QUADS);
+	glVertex2f(0, 0);
+	glVertex2f(textureWidth, 0);
+	glVertex2f(textureWidth, textureHeight);
+	glVertex2f(0, textureHeight);
+
+
+	glEnd();
+
+	glPopMatrix();
 }

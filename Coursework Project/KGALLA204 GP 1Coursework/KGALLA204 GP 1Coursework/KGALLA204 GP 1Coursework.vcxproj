@@ -64,14 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Library Include="Libraries\DevIL.lib" />
-    <Library Include="Libraries\freeglut.lib" />
-    <Library Include="Libraries\ILU.lib" />
-    <Library Include="Libraries\ILUT.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="cBkGround.cpp" />
+    <ClCompile Include="cFont.cpp" />
+    <ClCompile Include="cFontMgr.cpp" />
     <ClCompile Include="cInputMgr.cpp" />
+    <ClCompile Include="cSound.cpp" />
+    <ClCompile Include="cSoundMgr.cpp" />
     <ClCompile Include="cSprite.cpp" />
     <ClCompile Include="cTexture.cpp" />
     <ClCompile Include="cWNDManager.cpp" />
@@ -82,7 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBkGround.h" />
+    <ClInclude Include="cFont.h" />
+    <ClInclude Include="cFontMgr.h" />
     <ClInclude Include="cInputMgr.h" />
+    <ClInclude Include="cSound.h" />
+    <ClInclude Include="cSoundMgr.h" />
     <ClInclude Include="cSprite.h" />
     <ClInclude Include="cTexture.h" />
     <ClInclude Include="cWNDManager.h" />
@@ -92,6 +94,15 @@
     <ClInclude Include="cPlayerCar.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="windowOGL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libraries\alut.lib" />
+    <Library Include="Libraries\DevIL.lib" />
+    <Library Include="Libraries\freeglut.lib" />
+    <Library Include="Libraries\ftgl.lib" />
+    <Library Include="Libraries\ILU.lib" />
+    <Library Include="Libraries\ILUT.lib" />
+    <Library Include="Libraries\OpenAL32.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

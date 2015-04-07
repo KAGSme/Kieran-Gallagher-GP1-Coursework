@@ -14,9 +14,11 @@
 #include "IL\ilu.h"
 #include "IL\ilut.h"
 // Audio
-//#include "OpenAL\al.h"
-//#include "OpenAL\alc.h"
-//#include "OpenAL\alut.h"
+#include "OpenAL\al.h"
+#include "OpenAL\alc.h"
+#include "OpenAL\alut.h"
+// Font
+#include "FTGL\ftgl.h"
 // Maths functions
 #include "glm\glm.hpp"
 #include "glm\gtc\matrix_transform.hpp"
@@ -30,7 +32,7 @@
 #include <algorithm>
 // Textures & Sprites
 #include "cTexture.h"
-//#include "cSprite.h"
+
 
 using namespace std;
 
