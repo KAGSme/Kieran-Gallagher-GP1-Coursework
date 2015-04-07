@@ -5,6 +5,7 @@ cPlayerCar.cpp
 =================
 */
 #include "cPlayerCar.h"
+#include <sstream>
 
 void cPlayerCar::render()
 {
@@ -46,17 +47,22 @@ Update sprite position
 
 void cPlayerCar::update(double deltaTime)
 {
+	ostringstream convert;
+	
+	convert << deltaTime;
 
 	if (m_InputMgr->isKeyDown(VK_RIGHT) && spritePos2D.x < boundryX[1])
 	{
 		spritePos2D.x += speedX * deltaTime;
 		spriteRotation = 10.0f;
+		cout << "\n Right " + convert.str();
+		
 	}
-
 	if (m_InputMgr->isKeyDown(VK_LEFT) && spritePos2D.x > boundryX[0])
 	{
 		spritePos2D.x -= speedX * deltaTime;
 		spriteRotation = -10.0f;
+		cout << "\n Left " + convert.str();
 	}
 	if (!m_InputMgr->isKeyDown(VK_LEFT) && !m_InputMgr->isKeyDown(VK_RIGHT))
 	{

@@ -2,7 +2,7 @@
 #define WIN32_EXTRA_LEAN
 
 #define GLX_GLXEXT_LEGACY //Must be declared so that our local glxext.h is picked up, rather than the system one
-
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <Windows.h>
 #include "windowOGL.h"
@@ -24,6 +24,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	const int windowWidth = 1600;
 	const int windowHeight = 600;
 	const int windowBPP = 16;
+
+	//for debug
+	AllocConsole();
+	AttachConsole(GetCurrentProcessId());
+	freopen("CON", "w", stdout);
 
 	//This is our window
 	static cWNDManager* pgmWNDMgr = cWNDManager::getInstance();
@@ -96,7 +101,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	playerCar.setTexture(texturePlayer.getTexture());
 	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
 	playerCar.setSpriteCentre();
-	playerCar.SetSpeedX(250);
+	playerCar.SetSpeedX(300);
 	playerCar.SetBoundriesX(boundriesX[0], boundriesX[1]);
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false

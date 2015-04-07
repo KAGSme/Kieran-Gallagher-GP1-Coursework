@@ -33,11 +33,19 @@ public:
 
 	static LRESULT CALLBACK WndProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-	float getElapsedSeconds();
+	void StartCounter();
+
+	double GetCounter();
+
+	double getElapsedSeconds();
 	static cWNDManager* getInstance();
 
 
 private:
+
+	double PCFreq = 0.0;
+	__int64 CounterStart = 0;
+
 	static cWNDManager* pInstance;
 
 	windowOGL* m_winOGL; //A link to the OGL window
@@ -53,7 +61,7 @@ private:
 	void setupPixelFormat(void);
 	windowOGL* getAttachedWND();
 
-	float m_lastTime;
+	double m_lastTime;
 
 	HWND m_hwnd; //Window handle
 	HDC m_hdc; //Device context

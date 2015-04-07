@@ -269,8 +269,28 @@ windowOGL*  cWNDManager::getAttachedWND()
 	return m_winOGL;
 }
 
+void cWNDManager::StartCounter()
+{
+	//code taken from http://stackoverflow.com/questions/1739259/how-to-use-queryperformancecounter from user Ramónster
+	LARGE_INTEGER li;
+	if (!QueryPerformanceFrequency(&li))
+		cout << "QueryPerformanceFrequency failed!\n";
 
-float cWNDManager::getElapsedSeconds()
+	PCFreq = double(li.QuadPart) / 1000.0;
+
+	QueryPerformanceCounter(&li);
+	CounterStart = li.QuadPart;
+}
+
+double cWNDManager::GetCounter()
+{
+	//code taken from http://stackoverflow.com/questions/1739259/how-to-use-queryperformancecounter from user Ramónster
+	LARGE_INTEGER li;
+	QueryPerformanceCounter(&li);
+	return double(li.QuadPart - CounterStart) / PCFreq;
+}
+
+double cWNDManager::getElapsedSeconds()
 {
 	double currentTime = double(GetTickCount()) / 1000.0f;
 	double seconds = double(currentTime - m_lastTime);

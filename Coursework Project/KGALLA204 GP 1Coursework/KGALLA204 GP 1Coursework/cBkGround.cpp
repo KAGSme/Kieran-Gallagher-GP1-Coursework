@@ -15,7 +15,7 @@ void cBkGround::render()
 Update the sprite position
 =================================================================
 */
-float scrollSpeed = 2;
+float scrollSpeed = 1.5;
 void cBkGround::update(double deltaTime)
 {
 	spriteTexCoordData[0] -= glm::vec2(0, scrollSpeed * deltaTime);
