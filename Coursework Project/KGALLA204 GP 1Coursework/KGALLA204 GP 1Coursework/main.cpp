@@ -12,6 +12,7 @@
 #include "cSprite.h"
 #include "cBkGround.h"
 #include "cPlayerCar.h"
+#include "cEnemySpawner.h"
 
 int WINAPI WinMain(HINSTANCE hInstance,
 					HINSTANCE hPrevInstance,
@@ -20,7 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 {
 	//Set our window settings, this is currently dependant on how many lanes we want to have in the game
 
-	const int lanes = 6;
+	const int lanes = 3;
 	const int windowWidth = 1600;
 	const int windowHeight = 600;
 	const int windowBPP = 16;
@@ -101,8 +102,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	playerCar.setTexture(texturePlayer.getTexture());
 	playerCar.setTextureDimensions(texturePlayer.getTWidth(), texturePlayer.getTHeight());
 	playerCar.setSpriteCentre();
-	playerCar.SetSpeedX(300);
+	playerCar.SetSpeedX(500);
 	playerCar.SetBoundriesX(boundriesX[0], boundriesX[1]);
+
+	cEnemySpawner enemySpawner(&playerCar, boundriesX);
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false
 	while (pgmWNDMgr->isWNDRunning())
@@ -122,6 +125,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		spriteBkgdEnds[0].render();
 		spriteBkgdEnds[1].update(elapsedTime);
 		spriteBkgdEnds[1].render();
+
+		enemySpawner.update(elapsedTime);
 
 		playerCar.update(elapsedTime);
 		playerCar.render();

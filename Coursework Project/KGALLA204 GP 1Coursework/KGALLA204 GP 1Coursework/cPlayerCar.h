@@ -2,7 +2,7 @@
 ============
 cPlayerCar.cpp
 - Header file for class definition - SPECIFICATION
-- header file for the cPlayerCar class which is a child of the cSprite class
+- header file for the cBkGround class which is a child of the cSprite class
 ============
 */
 #ifndef CPLAYERCAR_H
