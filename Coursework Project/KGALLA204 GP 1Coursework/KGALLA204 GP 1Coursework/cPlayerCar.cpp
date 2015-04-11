@@ -7,6 +7,11 @@ cPlayerCar.cpp
 #include "cPlayerCar.h"
 #include <sstream>
 
+cPlayerCar::cPlayerCar()
+{
+	isAlive = true;
+}
+
 void cPlayerCar::render()
 {
 	glPushMatrix();
@@ -68,6 +73,15 @@ void cPlayerCar::update(double deltaTime)
 	{
 		spriteRotation = 0.0f;
 	}
+
+	setBoundingRect(&boundingRect);
+
+	if (playerHealth > 0) isAlive = true;
+	if (playerHealth <= 0 && isAlive)
+	{
+		isAlive = false;
+		cout << "\n Player Dead!";
+	}
 }
 
 void cPlayerCar::SetSpeedX(float velX)
@@ -79,4 +93,15 @@ void cPlayerCar::SetBoundriesX(float boundriesX1, float boundriesX2)
 {
 	boundryX[0] = boundriesX1;
 	boundryX[1] = boundriesX2;
+}
+
+void cPlayerCar::ReduceHealth()
+{
+	playerHealth--;
+	cout << "\n Health Decrease!";
+}
+
+void cPlayerCar::SetPlayerHealth(int value)
+{
+	playerHealth = value;
 }

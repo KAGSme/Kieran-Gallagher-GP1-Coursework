@@ -52,4 +52,6 @@ void cEnemyCar::render()
 void cEnemyCar::update(double deltaTime)
 {
 	spritePos2D.y += speedY * deltaTime;
+
+	setBoundingRect(&boundingRect);
 }

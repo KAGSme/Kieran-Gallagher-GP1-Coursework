@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="cBkGround" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAA=</HashCode>
+      <FileName>cBkGround.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cEnemySpawner">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQQAAAAAAAAAgAAAAAAAAAFAAAAAQAQABAAAEEEAAA=</HashCode>
+      <FileName>cEnemySpawner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cPlayerCar">
+    <Position X="5.25" Y="1.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAQAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAUAAA=</HashCode>
+      <FileName>cPlayerCar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -25,8 +25,8 @@ private:
 
 public:
 	cEnemySpawner(cPlayerCar* playerCar, int boundries[2]); //default constructor
-	void update(double deltaTime);
-	void spawnEnemy();
+	void update(double deltaTime); // update function
+	void spawnEnemy(); // spawns a new enemy car and places them in a randomised position along the x-axis
 
 };
 #endif

@@ -51,10 +51,16 @@ void cEnemySpawner::update(double deltaTime)
 		}
 	}
 
-	for (int i = 0; i < cars.size(); i++)
+	for (vector<cEnemyCar*>::iterator carIterator = cars.begin(); carIterator != cars.end();)
 	{
-		cars[i]->update(deltaTime);
-		cars[i]->render();
+		(*carIterator)->update(deltaTime);
+		(*carIterator)->render();
+		if ((*carIterator)->collidedWith((*carIterator)->getBoundingRect(), thePlayerCar->getBoundingRect()))
+		{
+			thePlayerCar->ReduceHealth();
+			carIterator = cars.erase(carIterator);
+		}
+		else (*carIterator++);
 	}
 	
 	if (overallTimer > difficultyTimeTier)

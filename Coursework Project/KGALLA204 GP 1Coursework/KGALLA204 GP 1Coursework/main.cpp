@@ -13,6 +13,8 @@
 #include "cBkGround.h"
 #include "cPlayerCar.h"
 #include "cEnemySpawner.h"
+#include "cSoundMgr.h"
+#include "cFontMgr.h"
 
 int WINAPI WinMain(HINSTANCE hInstance,
 					HINSTANCE hPrevInstance,
@@ -43,6 +45,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//Attach the OpenGL window
 	pgmWNDMgr->attachOGLWnd(&theOGLWnd);
 
+	// This is the sound manager
+	static cSoundMgr* theSoundMgr = cSoundMgr::getInstance();
+
+	// This is the Font manager
+	static cFontMgr* theFontMgr = cFontMgr::getInstance();
+
 	//Attach the keyboard manager
 	pgmWNDMgr->attachInputMgr(theInputMgr);
 
@@ -65,6 +73,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	//Clear key buffers
 	theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
+
+	LPCSTR UIfont = "fonts\\Dense-Regular.ttf";
+	theFontMgr->addFont("Dense", UIfont, 24);
 
 	// Create the background texture
 	cTexture textureBkgd[3];
@@ -104,6 +115,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	playerCar.setSpriteCentre();
 	playerCar.SetSpeedX(500);
 	playerCar.SetBoundriesX(boundriesX[0], boundriesX[1]);
+	playerCar.SetPlayerHealth(3);
 
 	cEnemySpawner enemySpawner(&playerCar, boundriesX);
 
@@ -130,6 +142,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		playerCar.update(elapsedTime);
 		playerCar.render();
+
+		theFontMgr->getFont("Dense")->printText("Health", FTPoint(windowWidth/2, windowHeight/2, 0.f));
 
 		pgmWNDMgr->swapBuffers();
 		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER);
