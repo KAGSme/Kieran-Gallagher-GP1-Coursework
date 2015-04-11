@@ -65,9 +65,10 @@ Render the text using the desired font
 void cFont::printText(LPCSTR text, FTPoint textPos)
 {
 	glPushMatrix();
+	
+	glScalef(1.0f, -1.0f, 1.0f);
 
-	glColor3f(255.0f, 255.0f, 255.0f);
-	glScalef(-20, -20, 1);
+	glColor3f(100.0f, 255.0f, 0.0f);
 	theFont->Render(text,  -1, textPos);
 
 	glPopMatrix();

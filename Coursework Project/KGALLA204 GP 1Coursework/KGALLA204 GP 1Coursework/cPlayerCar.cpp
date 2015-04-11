@@ -105,3 +105,8 @@ void cPlayerCar::SetPlayerHealth(int value)
 {
 	playerHealth = value;
 }
+
+int cPlayerCar::GetPlayerHealth()
+{
+	return playerHealth;
+}

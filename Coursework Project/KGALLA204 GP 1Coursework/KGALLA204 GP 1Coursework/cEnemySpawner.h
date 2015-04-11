@@ -16,10 +16,11 @@ private:
 	cPlayerCar* thePlayerCar;
 	cTexture textureEnemy;
 	vector<cEnemyCar*> cars;
-	float timer = 0;
-	float overallTimer = 0;
+	float spawnTimer = 0;
+	float difficultyTimer = 0;
 	int spawnBoundries[2];
 	int speedY = 100;
+	int speedBoundryY = 300;
 	float difficultyTimeTier;
 	float speedIncrease;
 

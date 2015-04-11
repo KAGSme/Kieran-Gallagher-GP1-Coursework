@@ -14,8 +14,8 @@ cEnemySpawner::cEnemySpawner(cPlayerCar* playerCar, int boundries[2]) // Default
 	cars.reserve(10);
 	thePlayerCar = playerCar;	
 	textureEnemy.createTexture("ArtAssets\\EnemyCar_Mini.png");
-	timer = rand() % 3 + 0.5;
-	overallTimer = 0;
+	spawnTimer = rand() % 3 + 0.5;
+	difficultyTimer = 0;
 	difficultyTimeTier = 5;
 	speedY = 120;
 }
@@ -33,13 +33,18 @@ void cEnemySpawner::spawnEnemy()
 
 void cEnemySpawner::update(double deltaTime)
 {
-	timer -= deltaTime;
-	overallTimer += deltaTime;
+	if (speedY == speedBoundryY)
+	{
+		speedY = speedBoundryY;
+	}
 
-	if (timer <= 0)
+	spawnTimer -= deltaTime;
+	difficultyTimer += deltaTime;
+
+	if (spawnTimer <= 0)
 	{
 		spawnEnemy();
-		timer = rand() % 3 + 1;
+		spawnTimer = rand() % 3 + 1;
 		cout << "\n CarSpawn";
 	}
 
@@ -63,7 +68,7 @@ void cEnemySpawner::update(double deltaTime)
 		else (*carIterator++);
 	}
 	
-	if (overallTimer > difficultyTimeTier)
+	if (difficultyTimer > difficultyTimeTier)
 	{
 		speedY += speedY / 2;
 		difficultyTimeTier += difficultyTimeTier / 1.5;

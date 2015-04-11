@@ -21,6 +21,7 @@ private:
 
 public:
 	cPlayerCar();
+	int GetPlayerHealth();
 	void SetBoundriesX(float boundriesX1, float boundriesX2);	//sets the boundry along the ends of the road which the player can't cross
 	void SetSpeedX(float velX);	//Change the default horizontal speed for player car 
 	void SetPlayerHealth(int value);

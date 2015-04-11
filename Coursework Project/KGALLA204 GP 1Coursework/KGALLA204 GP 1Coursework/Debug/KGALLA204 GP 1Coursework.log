@@ -1,10 +1,23 @@
-﻿Build started 11/04/2015 01:48:25.
-     1>Project "D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11/04/2015 17:30:48.
+     1>Project "C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt cFont.cpp
-         cFont.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt cEnemySpawner.cpp main.cpp
+         cEnemySpawner.cpp
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\cenemyspawner.cpp(17): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\cenemyspawner.cpp(29): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\cenemyspawner.cpp(41): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\cenemyspawner.cpp(42): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\cenemyspawner.cpp(47): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\cenemyspawner.cpp(74): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         main.cpp
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\main.cpp(100): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\main.cpp(105): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\kieran\desktop\game development\gp1\kieran-gallagher-gp1-coursework\coursework project\kgalla204 gp 1coursework\kgalla204 gp 1coursework\main.cpp(118): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.lib" /MACHINE:X86 Debug\cBkGround.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.lib" /MACHINE:X86 Debug\cBkGround.obj
          Debug\cEnemyCar.obj
          Debug\cEnemySpawner.obj
          Debug\cFont.obj
@@ -26,11 +39,11 @@
          Libraries\ILU.lib
          Libraries\ILUT.lib
          Libraries\OpenAL32.lib
-         KGALLA204 GP 1Coursework.vcxproj -> D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.exe
+         KGALLA204 GP 1Coursework.vcxproj -> C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.exe
        BscMake:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.bsc" /n Debug\cBkGround.sbr Debug\cEnemyCar.sbr Debug\cEnemySpawner.sbr Debug\cFont.sbr Debug\cFontMgr.sbr Debug\cInputMgr.sbr Debug\cSound.sbr Debug\cSoundMgr.sbr Debug\cSprite.sbr Debug\cTexture.sbr Debug\cWNDManager.sbr Debug\GameScene.sbr Debug\main.sbr Debug\cPlayerCar.sbr Debug\windowOGL.sbr
-     1>Done Building Project "D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Debug\KGALLA204 GP 1Coursework.bsc" /n Debug\cBkGround.sbr Debug\cEnemyCar.sbr Debug\cEnemySpawner.sbr Debug\cFont.sbr Debug\cFontMgr.sbr Debug\cInputMgr.sbr Debug\cSound.sbr Debug\cSoundMgr.sbr Debug\cSprite.sbr Debug\cTexture.sbr Debug\cWNDManager.sbr Debug\GameScene.sbr Debug\main.sbr Debug\cPlayerCar.sbr Debug\windowOGL.sbr
+     1>Done Building Project "C:\Users\Kieran\Desktop\Game Development\GP1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:08.81
+Time Elapsed 00:00:17.86

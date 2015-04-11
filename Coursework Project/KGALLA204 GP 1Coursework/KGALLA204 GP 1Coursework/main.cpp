@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//Set our window settings, this is currently dependant on how many lanes we want to have in the game
 
 	const int lanes = 3;
-	const int windowWidth = 1600;
+	const int windowWidth = 800;
 	const int windowHeight = 600;
 	const int windowBPP = 16;
 
@@ -74,8 +74,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//Clear key buffers
 	theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
 
-	LPCSTR UIfont = "fonts\\Dense-Regular.ttf";
-	theFontMgr->addFont("Dense", UIfont, 24);
+	LPCSTR UIfont = "Fonts/Dense-Regular.ttf";
+
+	theFontMgr->addFont("Dense", UIfont, 90);
 
 	// Create the background texture
 	cTexture textureBkgd[3];
@@ -143,7 +144,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		playerCar.update(elapsedTime);
 		playerCar.render();
 
-		theFontMgr->getFont("Dense")->printText("Health", FTPoint(windowWidth/2, windowHeight/2, 0.f));
+		ostringstream playerHealthBuffer;
+		playerHealthBuffer << playerCar.GetPlayerHealth();
+		string healthDisplay;
+		healthDisplay.append("HEALTH: ");
+		healthDisplay.append(playerHealthBuffer.str());
+
+		theFontMgr->getFont("Dense")->printText(healthDisplay.c_str() , FTPoint(10, -580, 0.f));
 
 		pgmWNDMgr->swapBuffers();
 		theInputMgr->clearBuffers(theInputMgr->KEYS_PRESSED_BUFFER);
