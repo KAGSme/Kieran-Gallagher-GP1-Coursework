@@ -18,6 +18,7 @@ private:
 	float boundryX[2];
 	int playerHealth;
 	bool isAlive;
+	float engineEffectTimer = 0;
 
 public:
 	cPlayerCar();
@@ -28,6 +29,7 @@ public:
 	void render();	//default render function
 	void update(double deltaTime); //Player Car Update function
 	void ReduceHealth(); //Reduces player health
+	bool IsAlive(); //returns true if player is 'alive'
 };
 
 

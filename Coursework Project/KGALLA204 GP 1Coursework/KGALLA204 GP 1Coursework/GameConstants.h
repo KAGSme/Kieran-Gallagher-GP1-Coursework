@@ -10,6 +10,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <sstream>
+#include <iomanip>
 // Image Texture loading library
 #include "IL\il.h"
 #include "IL\ilu.h"

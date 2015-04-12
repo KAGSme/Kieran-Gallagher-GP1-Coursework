@@ -67,5 +67,6 @@ public:
 	bool collidedWith(RECT thisSprite, RECT otherSpritePos);	// Check for collisions
 	bool SphereSphereCollision(glm::vec2 spritePosition, float spriteRadius);
 	virtual void renderCollisionBox();				// Use this function to show the collision box
+	float getSpritePosX(); // Get the sprite position along the x-axis;
 };
 #endif

@@ -6,7 +6,7 @@ cEnemySpawner.cpp
 */
 #include "cEnemySpawner.h"
 
-cEnemySpawner::cEnemySpawner(cPlayerCar* playerCar, int boundries[2]) // Default Constructer
+cEnemySpawner::cEnemySpawner(cPlayerCar* playerCar, int boundries[2], int speedYValue, int speedBoundryYValue) // Default Constructer
 {
 	spawnBoundries[0] = boundries[0];
 	spawnBoundries[1] = boundries[1];
@@ -16,8 +16,9 @@ cEnemySpawner::cEnemySpawner(cPlayerCar* playerCar, int boundries[2]) // Default
 	textureEnemy.createTexture("ArtAssets\\EnemyCar_Mini.png");
 	spawnTimer = rand() % 3 + 0.5;
 	difficultyTimer = 0;
-	difficultyTimeTier = 5;
+	difficultyTimeTier = 10;
 	speedY = 120;
+	previousPosition = 0;
 }
 
 void cEnemySpawner::spawnEnemy()
@@ -29,6 +30,13 @@ void cEnemySpawner::spawnEnemy()
 	car->SetSpeedY(speedY);
 	cars.push_back(car);
 	cars.back()->setSpritePos(glm::vec2(rand() % (spawnBoundries[1] - spawnBoundries[0]) + spawnBoundries[0], -200));
+	
+	//prevents new car from overlapping the previous car when spawning
+	while (car->getSpritePosX() >= previousPosition - textureEnemy.getTWidth() / 2 && car->getSpritePosX() <= previousPosition + textureEnemy.getTWidth() / 2){
+		cars.back()->setSpritePos(glm::vec2(rand() % (spawnBoundries[1] - spawnBoundries[0]) + spawnBoundries[0], -200));
+	}
+
+	previousPosition = cars.back()->getSpritePosX();
 }
 
 void cEnemySpawner::update(double deltaTime)
@@ -44,7 +52,7 @@ void cEnemySpawner::update(double deltaTime)
 	if (spawnTimer <= 0)
 	{
 		spawnEnemy();
-		spawnTimer = rand() % 3 + 1;
+		spawnTimer = rand() % 2 + 0.8;
 		cout << "\n CarSpawn";
 	}
 

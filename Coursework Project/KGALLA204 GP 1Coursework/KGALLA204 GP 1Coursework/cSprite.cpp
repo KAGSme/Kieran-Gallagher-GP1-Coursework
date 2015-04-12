@@ -44,6 +44,11 @@ glm::vec2 cSprite::getSpritePos()  // Return the sprites current position
 	return cSprite::spritePos2D;
 }
 
+float cSprite::getSpritePosX()  // Return the sprites current position
+{
+	return cSprite::spritePos2D.x;
+}
+
 /*
 =================
 - set the position of the sprite.

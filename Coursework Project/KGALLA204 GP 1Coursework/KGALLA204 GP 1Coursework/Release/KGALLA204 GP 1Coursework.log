@@ -1,23 +1,31 @@
-﻿Build started 17/03/2015 23:55:17.
+﻿Build started 12/04/2015 13:16:47.
      1>Project "D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework\KGALLA204 GP 1Coursework.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt cBkGround.cpp
-         cBkGround.cpp
-     1>cBkGround.cpp(18): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt cWNDManager.cpp
+         cWNDManager.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Release\KGALLA204 GP 1Coursework.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Release\KGALLA204 GP 1Coursework.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Release\KGALLA204 GP 1Coursework.lib" /MACHINE:X86 /SAFESEH Release\cBkGround.obj
+         Release\cEnemyCar.obj
+         Release\cEnemySpawner.obj
+         Release\cFont.obj
+         Release\cFontMgr.obj
          Release\cInputMgr.obj
+         Release\cSound.obj
+         Release\cSoundMgr.obj
          Release\cSprite.obj
          Release\cTexture.obj
          Release\cWNDManager.obj
-         Release\Game.obj
+         Release\GameScene.obj
          Release\main.obj
          Release\cPlayerCar.obj
          Release\windowOGL.obj
+         Libraries\alut.lib
          Libraries\DevIL.lib
          Libraries\freeglut.lib
+         Libraries\ftgl.lib
          Libraries\ILU.lib
          Libraries\ILUT.lib
+         Libraries\OpenAL32.lib
          Generating code
          Finished generating code
          KGALLA204 GP 1Coursework.vcxproj -> D:\Games Development\Games Programming 1\Kieran-Gallagher-GP1-Coursework\Coursework Project\KGALLA204 GP 1Coursework\Release\KGALLA204 GP 1Coursework.exe
@@ -25,4 +33,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.42
+Time Elapsed 00:00:02.57

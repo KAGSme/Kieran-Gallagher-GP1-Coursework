@@ -5,7 +5,6 @@ cPlayerCar.cpp
 =================
 */
 #include "cPlayerCar.h"
-#include <sstream>
 
 cPlayerCar::cPlayerCar()
 {
@@ -52,33 +51,42 @@ Update sprite position
 
 void cPlayerCar::update(double deltaTime)
 {
-	ostringstream convert;
-	
-	convert << deltaTime;
+	engineEffectTimer += deltaTime;
+
+	setBoundingRect(&boundingRect);
+
+	if (engineEffectTimer >= 0.27f)
+	{
+		m_SoundMgr->getSnd("Engine")->playAudio(AL_TRUE);
+		engineEffectTimer = 0;
+	}
 
 	if (m_InputMgr->isKeyDown(VK_RIGHT) && spritePos2D.x < boundryX[1])
 	{
 		spritePos2D.x += speedX * float(deltaTime);
 		spriteRotation = 10.0f;
-		//cout << "\n Right " + convert.str();
-		
+
 	}
+
 	if (m_InputMgr->isKeyDown(VK_LEFT) && spritePos2D.x > boundryX[0])
 	{
 		spritePos2D.x -= speedX * deltaTime;
 		spriteRotation = -10.0f;
-		//cout << "\n Left " + convert.str();
 	}
+
 	if (!m_InputMgr->isKeyDown(VK_LEFT) && !m_InputMgr->isKeyDown(VK_RIGHT))
 	{
 		spriteRotation = 0.0f;
 	}
 
-	setBoundingRect(&boundingRect);
+	if (playerHealth > 0)
+	{
+		isAlive = true;
+	}
 
-	if (playerHealth > 0) isAlive = true;
 	if (playerHealth <= 0 && isAlive)
 	{
+		m_SoundMgr->getSnd("Failure")->playAudio(AL_TRUE);
 		isAlive = false;
 		cout << "\n Player Dead!";
 	}
@@ -98,6 +106,7 @@ void cPlayerCar::SetBoundriesX(float boundriesX1, float boundriesX2)
 void cPlayerCar::ReduceHealth()
 {
 	playerHealth--;
+	m_SoundMgr->getSnd("Explosion")->playAudio(AL_TRUE);
 	cout << "\n Health Decrease!";
 }
 
@@ -109,4 +118,10 @@ void cPlayerCar::SetPlayerHealth(int value)
 int cPlayerCar::GetPlayerHealth()
 {
 	return playerHealth;
+}
+
+bool cPlayerCar::IsAlive()
+{
+	if (isAlive) return true;
+	else return false;
 }
