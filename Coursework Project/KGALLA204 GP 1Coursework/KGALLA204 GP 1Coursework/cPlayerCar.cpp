@@ -87,7 +87,7 @@ void cPlayerCar::update(double deltaTime)
 	if (playerHealth <= 0 && isAlive)
 	{
 		m_SoundMgr->getSnd("Failure")->playAudio(AL_TRUE);
-		isAlive = false;
+		setActive(false);
 		cout << "\n Player Dead!";
 	}
 }
@@ -118,10 +118,4 @@ void cPlayerCar::SetPlayerHealth(int value)
 int cPlayerCar::GetPlayerHealth()
 {
 	return playerHealth;
-}
-
-bool cPlayerCar::IsAlive()
-{
-	if (isAlive) return true;
-	else return false;
 }

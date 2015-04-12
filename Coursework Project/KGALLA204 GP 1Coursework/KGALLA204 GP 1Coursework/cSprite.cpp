@@ -44,11 +44,6 @@ glm::vec2 cSprite::getSpritePos()  // Return the sprites current position
 	return cSprite::spritePos2D;
 }
 
-float cSprite::getSpritePosX()  // Return the sprites current position
-{
-	return cSprite::spritePos2D.x;
-}
-
 /*
 =================
 - set the position of the sprite.
@@ -323,4 +318,43 @@ void cSprite::renderCollisionBox()
 	glEnd();
 
 	glPopMatrix();
+}
+
+glm::ivec2 cSprite::getTextureDimensions()
+{
+	return glm::ivec2(textureWidth, textureHeight);
+}
+
+glm::mat4x4 cSprite::GetWorldMatrix()
+{
+	glm::mat4x4 matrix;
+	matrix = glm::mat4x4(1);
+	matrix = glm::translate(matrix, glm::vec3(spritePos2D.x, spritePos2D.y, 0));
+	matrix = glm::rotate(matrix, spriteRotation, glm::vec3(0, 0, 1));
+	matrix = glm::scale(matrix, glm::vec3(spriteScaling.x, spriteScaling.y, 1));
+	return matrix;
+}
+
+/*
+==========================================================================
+Use this method to check for pixel collisions
+==========================================================================
+*/
+
+void cSprite::PixelCollision(cSprite* thisSprite, cSprite* otherSprite)
+{
+	glm::mat4x4 tMat = thisSprite->GetWorldMatrix();
+	glm::mat4x4 oMat = otherSprite->GetWorldMatrix();
+
+	glm::ivec2 tTextureSize = glm::ivec2(thisSprite->getTextureDimensions().x, thisSprite->getTextureDimensions().y);
+	glm::ivec2 oTextureSize = glm::ivec2(otherSprite->getTextureDimensions().x/2, otherSprite->getTextureDimensions().y/2);
+	for (int x = 0; x < thisSprite->getTextureDimensions().x, x++;)
+	{
+		for (int y = 0; y < thisSprite->getTextureDimensions().y, y++;)
+		{
+
+		}
+	}
+
+
 }

@@ -252,6 +252,9 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			case VK_RIGHT:
 				pInstance->m_InputMgr->keyDown(wParam);
 				break;
+			case VK_RETURN:
+				pInstance->m_InputMgr->keyDown(wParam);
+				break;
 		}
 		break;
 	case WM_KEYUP:

@@ -16,7 +16,9 @@ class cFont
 {
 private:
 	FTFont* theFont;
-
+	GLfloat fcRed = 255;
+	GLfloat fcGreen = 255;
+	GLfloat fcBlue = 255;
 
 public:
 	cFont();
@@ -24,6 +26,7 @@ public:
 	~cFont();
 	FTFont* getFont();
 	void printText(LPCSTR text, FTPoint textPos);
+	void cFont::SetColour(GLfloat red, GLfloat green, GLfloat blue);
 
 };
 #endif

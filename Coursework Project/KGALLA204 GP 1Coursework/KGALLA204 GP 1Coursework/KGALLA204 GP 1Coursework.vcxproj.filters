@@ -123,4 +123,50 @@
   <ItemGroup>
     <None Include="SpeedyTrafficProjectClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="ArtAssets\BlackBox.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\EndScreen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\EnemyCar_Mini.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\PlayerCar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\RoadTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\RoadTileEdgeLeft.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\RoadTileEdgeRight.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\StartScreen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\Arrows.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ArtAssets\Enter.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\222804__gthall__engine-idle.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\Evan King - 20XX - 01 Thermal.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\Evan King - 20XX - 31 explosion_1_small.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\Evan King - 20XX - 42 jingle_failure_3.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

@@ -19,7 +19,7 @@ enum SCENES_ENUM
 {
 	scene_menu = 0,
 	scene_main_game,
-	sceen_end_game,
+	scene_end_game,
 };
 
 class GameScene
@@ -27,7 +27,6 @@ class GameScene
 private:
 	int windowWidth;
 	int windowHeight;
-	int lanes;
 	cInputMgr* theInputMgr;
 	cSoundMgr* theSoundMgr;
 	cFontMgr* theFontMgr;
@@ -37,18 +36,29 @@ private:
 	cTexture texturePlayer;
 	cTexture gameUItexture;
 	cTexture textureBkgd[3];
-	cPlayerCar* playerCar;
-	cBkGround* spriteUIbg;
-	cBkGround* spriteBkgdEnds[2];
-	cBkGround* spriteBkgd[3];
+	cPlayerCar playerCar;
+	cBkGround spriteUIbg;
+	cBkGround spriteBkgdEnds[2];
+	cBkGround spriteBkgd[3];
 	cEnemySpawner* enemySpawner;
 	float timer;
 	int boundriesX[2];
 
+	cTexture startScreenTexture;
+	cTexture endScreenTexture;
+	cTexture controlsUITexture[2];
+	cBkGround StartScreen;
+	cBkGround EndScreen;
+	cBkGround controlsUI[2];
+	string scoreDisplay = "";
+
+	float musicThemeLoopTimer = 0;
+
 public:
-	GameScene(int &windowWidthValue, int &windowHeightValue, int &lanesValue, cInputMgr* theInputMgrValue, cSoundMgr* theSoundMgrValue, cFontMgr* theFontMgrValue); //default constructor
+	GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* theInputMgrValue, cSoundMgr* theSoundMgrValue, cFontMgr* theFontMgrValue); //default constructor
 	void update(double deltaTime); //Update function
-	void MainGame(double deltaTime);
-	void DestroyMainGame();
+	void MainGame(double elapsedTime);
+	void MainMenu(double elapsedTime);
+	void EndScene(double elapsedTime);
 };
 #endif

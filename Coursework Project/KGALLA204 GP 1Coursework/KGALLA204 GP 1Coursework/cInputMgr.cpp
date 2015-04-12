@@ -150,3 +150,4 @@ void cInputMgr::clearBuffers(BYTE bufferToClear)
 		}
 	}
 }
+

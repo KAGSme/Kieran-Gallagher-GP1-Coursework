@@ -114,6 +114,24 @@
   <ItemGroup>
     <None Include="SpeedyTrafficProjectClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="ArtAssets\Arrows.png" />
+    <Image Include="ArtAssets\BlackBox.png" />
+    <Image Include="ArtAssets\EndScreen.png" />
+    <Image Include="ArtAssets\EnemyCar_Mini.png" />
+    <Image Include="ArtAssets\Enter.png" />
+    <Image Include="ArtAssets\PlayerCar.png" />
+    <Image Include="ArtAssets\RoadTile.png" />
+    <Image Include="ArtAssets\RoadTileEdgeLeft.png" />
+    <Image Include="ArtAssets\RoadTileEdgeRight.png" />
+    <Image Include="ArtAssets\StartScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\222804__gthall__engine-idle.wav" />
+    <Media Include="Audio\Evan King - 20XX - 01 Thermal.wav" />
+    <Media Include="Audio\Evan King - 20XX - 31 explosion_1_small.wav" />
+    <Media Include="Audio\Evan King - 20XX - 42 jingle_failure_3.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

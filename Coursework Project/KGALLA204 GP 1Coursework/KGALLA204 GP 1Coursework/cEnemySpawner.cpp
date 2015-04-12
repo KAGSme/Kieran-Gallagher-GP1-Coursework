@@ -32,11 +32,11 @@ void cEnemySpawner::spawnEnemy()
 	cars.back()->setSpritePos(glm::vec2(rand() % (spawnBoundries[1] - spawnBoundries[0]) + spawnBoundries[0], -200));
 	
 	//prevents new car from overlapping the previous car when spawning
-	while (car->getSpritePosX() >= previousPosition - textureEnemy.getTWidth() / 2 && car->getSpritePosX() <= previousPosition + textureEnemy.getTWidth() / 2){
+	while (car->getSpritePos().x >= previousPosition - textureEnemy.getTWidth() / 2 && car->getSpritePos().x <= previousPosition + textureEnemy.getTWidth() / 2){
 		cars.back()->setSpritePos(glm::vec2(rand() % (spawnBoundries[1] - spawnBoundries[0]) + spawnBoundries[0], -200));
 	}
 
-	previousPosition = cars.back()->getSpritePosX();
+	previousPosition = cars.back()->getSpritePos().x;
 }
 
 void cEnemySpawner::update(double deltaTime)
