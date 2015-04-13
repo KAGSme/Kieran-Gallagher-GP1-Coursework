@@ -35,8 +35,8 @@ public:
 	bool anyKeyPressed();						// Return true if any key was pressed
 	void clearKeyPress(int vkey);				// Clear the specified key press
 	void clearBuffers(BYTE bufferToClear);		// Clear buffers, single or combined
-	void addController(Xcontroller* Xgamepad, int number);
-	Xcontroller getController(int number);
+	void addController(Xcontroller* Xgamepad, int number); //adds controller to input manager(assigns to Xctrl[number])
+	Xcontroller getController(int number);//returns controller 
 
 };
 

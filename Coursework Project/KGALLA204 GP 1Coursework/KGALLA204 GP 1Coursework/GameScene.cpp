@@ -53,8 +53,8 @@ GameScene::GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* the
 	controlsUITexture[0].createTexture("ArtAssets\\Arrows.png");
 	controlsUITexture[1].createTexture("ArtAssets\\Enter.png");
 
-	//Instantiating in-game componetnts-------------------------------------------
-
+	//Instantiating/Initializing in-game componetnts-------------------------------------------
+	//setting up road tiles that the player drives on
 	for (int lane = 0; lane < 3; lane++)
 	{
 		spriteBkgd[lane].setSpritePos(glm::vec2((textureBkgd[1].getTWidth() * lane) + windowWidth / 2 - (textureBkgd[1].getTWidth() * 3) / 2, 0.0f));
@@ -72,7 +72,7 @@ GameScene::GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* the
 	spriteBkgdEnds[1].setTexture(textureBkgd[2].getTexture());
 	spriteBkgdEnds[1].setTextureDimensions(textureBkgd[2].getTWidth(), textureBkgd[2].getTHeight());
 	boundriesX[1] = spriteBkgd[3 - 1].getSpritePos().x + textureBkgd[1].getTWidth();
-
+	// setting up a box to contain hud elemets at the bottom of screen
 	spriteUIbg.setSpritePos(glm::vec2(0.0f, 500.0f));
 	spriteUIbg.setTexture(gameUItexture.getTexture());
 	spriteUIbg.setTextureDimensions(windowWidth, 100);
@@ -82,6 +82,7 @@ GameScene::GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* the
 	playerCar.attachSoundMgr(theSoundMgr);
 
 	//Instantiating Menu & End Game components-----------------------------------------
+	//backgrounds
 	StartScreen.setSpritePos(glm::vec2(0.0f, 0.0f));
 	StartScreen.setTexture(startScreenTexture.getTexture());
 	StartScreen.setTextureDimensions(startScreenTexture.getTWidth(), startScreenTexture.getTHeight());
@@ -89,11 +90,11 @@ GameScene::GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* the
 	EndScreen.setSpritePos(glm::vec2(0.0f, 0.0f));
 	EndScreen.setTexture(endScreenTexture.getTexture());
 	EndScreen.setTextureDimensions(endScreenTexture.getTWidth(), endScreenTexture.getTHeight());
-
+	//arrow keys
 	controlsUI[0].setSpritePos(glm::vec2(520, 410));
 	controlsUI[0].setTexture(controlsUITexture[0].getTexture());
 	controlsUI[0].setTextureDimensions(controlsUITexture[0].getTWidth()/3, controlsUITexture[0].getTHeight()/3);
-
+	//enter keys
 	controlsUI[1].setSpritePos(glm::vec2(450, 510));
 	controlsUI[1].setTexture(controlsUITexture[1].getTexture());
 	controlsUI[1].setTextureDimensions(controlsUITexture[1].getTWidth()/3, controlsUITexture[1].getTHeight()/3);
@@ -110,26 +111,27 @@ void GameScene::update(double elapsedTime)
 		musicThemeLoopTimer = 155;
 	}
 	musicThemeLoopTimer -= elapsedTime;
-
-	if (scenes == scene_menu)
+	
+	switch (scenes)//checks for scene to currently render
 	{
-		MainMenu(elapsedTime);
-	}
-	if (scenes == scene_main_game)
-	{
-		MainGame(elapsedTime);
-	}
-	if (scenes == scene_end_game)
-	{
-		EndScene(elapsedTime);
+		case scene_menu:
+			MainMenu(elapsedTime);
+			break;
+		case scene_main_game:
+			MainGame(elapsedTime);
+			break;
+		case scene_end_game:
+			EndScene(elapsedTime);
+			break;
 	}
 }
 
 //Main Game Mode---------------------------------------------------------------------
 void GameScene::MainGame(double elapsedTime)
 {
-	if (!sceneIsInitialised)// Initialising the scene
+	if (!sceneIsInitialised)// Initializing the scene
 	{
+		//initializes player's car
 		cout << "\n Main Game";
 		playerCar.attachInputMgr(theInputMgr);
 		playerCar.attachSoundMgr(theSoundMgr);
@@ -143,14 +145,16 @@ void GameScene::MainGame(double elapsedTime)
 		playerCar.SetPlayerHealth(3);
 		playerCar.setActive(true);
 
-		enemySpawner = new cEnemySpawner(&playerCar, boundriesX, 150, 400, &texturePlayer);
+		//intsantiates new enemy spawner
+		enemySpawner = new cEnemySpawner(&playerCar, boundriesX, 150, 300, &texturePlayer);
 
+		//sets timer
 		timer = 0;
 
 		sceneIsInitialised = true;
 	}
 
-	if (sceneIsInitialised)
+	if (sceneIsInitialised)//Updates/renders scene
 	{
 		for (int lane = 0; lane < 3; lane++)
 		{
@@ -173,25 +177,25 @@ void GameScene::MainGame(double elapsedTime)
 
 		spriteUIbg.render();
 
-		ostringstream timerBuffer;
+		ostringstream timerBuffer;//buffer to store timer as string that is displayed
 		timerBuffer << setprecision(4) << timer;
 		string timerDisplay;
 		timerDisplay.append("TIMER: ");
 		timerDisplay.append(timerBuffer.str());
 
-		ostringstream playerHealthBuffer;
+		ostringstream playerHealthBuffer;//buffer to store health as string that is displayed
 		playerHealthBuffer << playerCar.GetPlayerHealth();
 		string healthDisplay;
 		healthDisplay.append("HEALTH: ");
 		healthDisplay.append(playerHealthBuffer.str());
-
+		//display GUI(HUD) for player
 		theFontMgr->getFont("8-BIT")->printText(healthDisplay.c_str(), FTPoint(50, -580, 0.f));
 		theFontMgr->getFont("8-BIT")->printText(timerDisplay.c_str(), FTPoint(650, -580, 0.f));
 
-		if (!playerCar.isActive())
+		if (!playerCar.isActive())//switches scene if player is 'dead'
 		{
-			delete enemySpawner;
-			Sleep(1000);
+			delete enemySpawner;//delete instance of enemySpawner
+			Sleep(1000);//pause the game for a second to prevent making the game feel too jarring when stopping
 			sceneIsInitialised = false;
 			scenes = scene_end_game;
 		}
@@ -201,14 +205,15 @@ void GameScene::MainGame(double elapsedTime)
 //Main Menu---------------------------------------------------------------------
 void GameScene::MainMenu(double elapsedTime)
 {
-	if (!sceneIsInitialised)
+	if (!sceneIsInitialised)//initializes scene
 	{
 		theInputMgr->getController(0).Vibrate(0, 0);
 		cout << "\n Main Menu";
 		sceneIsInitialised = true;
 	}
-	if (sceneIsInitialised)
+	if (sceneIsInitialised)//Updates/renders scene
 	{
+		//switches scene if player presses 'a' on game pad or return on the keyboard
 		if (theInputMgr->isKeyDown(VK_RETURN) || theInputMgr->getController(0).GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A)
 		{
 			sceneIsInitialised = false;
@@ -232,14 +237,14 @@ void GameScene::MainMenu(double elapsedTime)
 //End Scene(game over)---------------------------------------------------------------------
 void GameScene::EndScene(double elapsedTime)
 {
-	if (!sceneIsInitialised)
+	if (!sceneIsInitialised)//initializing scene
 	{
 		cout << "\n End Scene";
 
 		theInputMgr->getController(0).Vibrate(0, 0);
-
-		ostringstream finalScoreMessage;
-		finalScoreMessage << setprecision(4) << (timer * 100);
+	
+		ostringstream finalScoreMessage; // buffer to store score as string that is displayed
+		finalScoreMessage << setprecision(4) << (timer * 100);//generates score based off of how long player survived
 		scoreDisplay = "";
 		scoreDisplay.append("YOU DIE WITH ");
 		scoreDisplay.append(finalScoreMessage.str());
@@ -247,8 +252,9 @@ void GameScene::EndScene(double elapsedTime)
 
 		sceneIsInitialised = true;
 	}
-	if (sceneIsInitialised)
+	if (sceneIsInitialised)//updates/render scene
 	{
+		//switches scene if player presses 'a' on game pad or return on the keyboard
 		if (theInputMgr->isKeyDown(VK_RETURN) || theInputMgr->getController(0).GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A)
 		{
 			sceneIsInitialised = false;

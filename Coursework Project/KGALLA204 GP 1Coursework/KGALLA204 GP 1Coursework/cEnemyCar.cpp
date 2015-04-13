@@ -10,13 +10,13 @@ void cEnemyCar::SetSpeedY(float velY)
 {
 	speedY = velY;
 }
-
-bool cEnemyCar::IsOffScreen_Bottom()
+//checks to see if the car has left the bottom of the screen------------------------
+bool cEnemyCar::IsOffScreen_Bottom() 
 {
 	if (spritePos2D.y > 700) return true;
 	else return false;
 }
-
+//Render function (set up to makes sure the sprite is also centered)----------------------------
 void cEnemyCar::render()
 {
 	glPushMatrix();
@@ -48,10 +48,11 @@ void cEnemyCar::render()
 
 	glPopMatrix();
 }
-
+// cEnemyCar;s update function-------------------------------------------
 void cEnemyCar::update(double deltaTime)
 {
-	spritePos2D.y += speedY * deltaTime;
+	
+	spritePos2D.y += speedY * deltaTime;//moves car downwards
 
 	setBoundingRect(&boundingRect);
 }

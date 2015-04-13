@@ -2,6 +2,7 @@
 ============
 GameScene.h
 - Header file for class definition - SPECIFICATION
+- Keeps track of each scene and loads the neccessary game components
 ============
 */
 #ifndef GAMESCENE_H
@@ -15,7 +16,7 @@ GameScene.h
 #include "cSoundMgr.h"
 #include "cFontMgr.h"
 
-enum SCENES_ENUM
+enum SCENES_ENUM//used for tracking which scene the game should render
 {
 	scene_menu = 0,
 	scene_main_game,
@@ -32,7 +33,7 @@ private:
 	cFontMgr* theFontMgr;
 	SCENES_ENUM scenes;
 	bool sceneIsInitialised;
-
+	//Main game scene objects------------------------
 	cTexture texturePlayer;
 	cTexture gameUItexture;
 	cTexture textureBkgd[3];
@@ -43,7 +44,7 @@ private:
 	cEnemySpawner* enemySpawner;
 	float timer;
 	int boundriesX[2];
-
+	//Menu and End scene objects----------------------
 	cTexture startScreenTexture;
 	cTexture endScreenTexture;
 	cTexture controlsUITexture[2];
@@ -55,10 +56,10 @@ private:
 	float musicThemeLoopTimer = 0;
 
 public:
-	GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* theInputMgrValue, cSoundMgr* theSoundMgrValue, cFontMgr* theFontMgrValue); //default constructor
+	GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* theInputMgrValue, cSoundMgr* theSoundMgrValue, cFontMgr* theFontMgrValue); // constructor
 	void update(double deltaTime); //Update function
-	void MainGame(double elapsedTime);
-	void MainMenu(double elapsedTime);
-	void EndScene(double elapsedTime);
+	void MainGame(double elapsedTime);//Mian Game Scene 
+	void MainMenu(double elapsedTime);//Main Menu Scene(start screen)
+	void EndScene(double elapsedTime);//End Game Scene(game over)
 };
 #endif

@@ -1,6 +1,7 @@
 /*
 ==========================================================================
 cFont.h
+modified code from lab 8
 ==========================================================================
 */
 
@@ -21,12 +22,12 @@ private:
 	GLfloat fcBlue = 255;
 
 public:
-	cFont();
-	cFont(LPCSTR fontFileName, int fontSize);
-	~cFont();
-	FTFont* getFont();
-	void printText(LPCSTR text, FTPoint textPos);
-	void cFont::SetColour(GLfloat red, GLfloat green, GLfloat blue);
+	cFont();//Default Constructor
+	cFont(LPCSTR fontFileName, int fontSize);//Overloaded constructor
+	~cFont();//Destructor
+	FTFont* getFont();//get the pointer to the font
+	void printText(LPCSTR text, FTPoint textPos);//Render the text using the desired font
+	void cFont::SetColour(GLfloat red, GLfloat green, GLfloat blue); //Sets the color the font will diplay in 
 
 };
 #endif

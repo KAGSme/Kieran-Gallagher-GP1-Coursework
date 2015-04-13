@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SpeedyTrafficProjectClassDiagram.cd" />
+    <None Include="SpeedyTrafficCodeMap.dgml" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ArtAssets\BlackBox.png">

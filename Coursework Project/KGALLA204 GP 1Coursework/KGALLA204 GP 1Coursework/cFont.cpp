@@ -1,6 +1,7 @@
 /*
 ==========================================================================
 cFont.cpp
+modified code from lab 8
 ==========================================================================
 */
 #pragma warning ( disable : 4996 )
@@ -73,6 +74,11 @@ void cFont::printText(LPCSTR text, FTPoint textPos)
 	glPopMatrix();
 }
 
+/*
+==========================================================================
+Sets the color the font will diplay in 
+==========================================================================
+*/
 void cFont::SetColour(GLfloat red, GLfloat green, GLfloat blue)
 {
 	fcRed = red;

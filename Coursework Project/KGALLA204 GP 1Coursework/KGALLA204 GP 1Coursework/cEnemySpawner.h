@@ -2,6 +2,7 @@
 ============
 cEnemySpawner.h
 - Header file for class definition - SPECIFICATION
+- Spawns enemies for the player car to dodge while also checking for collisions between player car and enemies
 ============
 */
 #ifndef CENEMYSPAWNER_H
@@ -25,9 +26,11 @@ private:
 	float difficultyTimeTier;
 	float speedIncrease;
 	int previousPosition;
+	int maxSpawnRange;
+	float minSpawnTime;
 
 public:
-	cEnemySpawner(cPlayerCar* playerCar, int boundries[2], int speedYValue, int speedBoundryYValue, cTexture* playerTex); //default constructor
+	cEnemySpawner(cPlayerCar* playerCar, int boundries[2], int speedYValue, int speedBoundryYValue, cTexture* playerTex); //constructor
 	void update(double deltaTime); // update function
 	void spawnEnemy(); // spawns a new enemy car and places them in a randomised position along the x-axis
 };

@@ -3,6 +3,7 @@
 cTexture.cpp
 - CPP file for class definition - IMPLEMENTATION
 - CPP file for the cTexture class
+-modified code, initially from labs
 =================
 */
 #include "cTexture.h"
@@ -113,7 +114,7 @@ GLsizei cTexture::getTHeight() 						// Return height of texture;
 {
 	return textureHeight;
 }
-
+//returns a value determining whether or not pixel of textureis clear or not
 int cTexture::GetPixelData(int x, int y)
 {
 	int pixel = (x + y * textureWidth) * bitMapPitch + 3;

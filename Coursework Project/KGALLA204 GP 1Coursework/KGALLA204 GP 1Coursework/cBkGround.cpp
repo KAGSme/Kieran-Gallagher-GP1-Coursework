@@ -18,6 +18,7 @@ Update the sprite position
 float scrollSpeed = 1.5;
 void cBkGround::update(double deltaTime)
 {
+	//moves the texture coordinates over time to give the sense of movement to player
 	spriteTexCoordData[0] -= glm::vec2(0, scrollSpeed * deltaTime);
 	spriteTexCoordData[1] -= glm::vec2(0, scrollSpeed * deltaTime);
 	spriteTexCoordData[2] -= glm::vec2(0, scrollSpeed * deltaTime);

@@ -3,6 +3,7 @@
 cTexture.h
 - Header file for class definition - SPECIFICATION
 - Header file for the cD3DXTexture class
+modified code 
 =================
 */
 #ifndef _CTEXTURE_H

@@ -75,15 +75,18 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//Clear key buffers
 	theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
 
-	//Add XinputController
+	//instantiate and Add XinputController to input manager
 	Xcontroller* xctrl0 = new Xcontroller(0);
 	if (xctrl0->IsXControllerConnected())
 	{
 		cout << "\n The XBOX 360 controller is connected!";
-		theInputMgr->addController(xctrl0, 0);
 	}
-	else cout << "\n The XBOX 360 controller is disconnected!\nPlease check your XBOX 360 controller again!";
-
+	else 
+	{ 
+		cout << "\n The XBOX 360 controller is disconnected!\nPlease check your XBOX 360 controller again!"; 
+	}
+	theInputMgr->addController(xctrl0, 0);
+	//instantiating scene manager
 	GameScene gameScene(windowWidth, windowHeight, theInputMgr, theSoundMgr, theFontMgr);
 
 	//Main Loop of game, it will keep rendering frames until isRunning returns false

@@ -20,7 +20,7 @@ public:
 	void SetSpeedY(float velY);	//Change the default horizontal speed for player car 
 	void render();	//default render function
 	void update(double deltaTime); //Enemy Car Update function
-	bool IsOffScreen_Bottom();
+	bool IsOffScreen_Bottom(); // checks to see if the car has left the bottom of screen
 };
 
 #endif

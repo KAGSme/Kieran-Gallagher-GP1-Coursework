@@ -319,12 +319,12 @@ void cSprite::renderCollisionBox()
 
 	glPopMatrix();
 }
-
+//returns texture dimensions
 glm::vec2 cSprite::getTextureDimensions()
 {
 	return glm::vec2(textureWidth, textureHeight);
 }
-
+//generates a world matrix for sprite to be used in pixel collision
 glm::mat4x4 cSprite::GetWorldMatrix()
 {
 	matrix = glm::mat4x4(1);
@@ -338,32 +338,33 @@ glm::mat4x4 cSprite::GetWorldMatrix()
 ==========================================================================
 Use this method to check for pixel collisions
 ==========================================================================
+psuedo code can be found here http://gamedev.stackexchange.com/questions/23603/how-to-handle-pixel-perfect-collision-detection-with-rotation
 */
 
 bool cSprite::PixelCollisionWith(cSprite* thisSprite, cSprite* otherSprite, cTexture* thisTex, cTexture* otherTex)
 {
 	glm::mat4x4 tMat = thisSprite->GetWorldMatrix();
 	glm::mat4x4 oMat = otherSprite->GetWorldMatrix();
-	glm::mat4x4 oMatInverse = glm::inverse(oMat);
+	glm::mat4x4 oMatInverse = glm::inverse(oMat);//generates inverse of otherSprite world matrix
 
-	glm::ivec2 tTextureSize = glm::ivec2(thisSprite->getTextureDimensions().x/2, thisSprite->getTextureDimensions().y/2);
+	glm::ivec2 tTextureSize = glm::ivec2(thisSprite->getTextureDimensions().x/2, thisSprite->getTextureDimensions().y/2);//dimensions must be halved for the centre of sprites in some cases(like player car)
 	glm::ivec2 oTextureSize = glm::ivec2(otherSprite->getTextureDimensions().x/2, otherSprite->getTextureDimensions().y/2);
 	for (int x = 0; x < thisSprite->getTextureDimensions().x; x++)
 	{
 		for (int y = 0; y < thisSprite->getTextureDimensions().y; y++)
 		{
-			bool solidThis = thisTex->GetPixelData(x, y) != 0;
+			bool solidThis = thisTex->GetPixelData(x, y) != 0;//checks if pixel is solid
 			if (solidThis)
 			{
 				glm::vec4 pos = tMat * (glm::vec4(x, y, 0, 1) - glm::vec4(tTextureSize.x, tTextureSize.y, 0, 0));
 				glm::vec4 positionOther = oMatInverse * pos + glm::vec4(oTextureSize.x, oTextureSize.y, 0, 0);
 
 				if (positionOther.x < 0 || positionOther.y < 0 || 
-					positionOther.x >= otherSprite->getTextureDimensions().x || positionOther.y >= otherSprite->getTextureDimensions().y)continue;
+					positionOther.x >= otherSprite->getTextureDimensions().x || positionOther.y >= otherSprite->getTextureDimensions().y)continue;//checks if pixel is 'out of bounds' with other sprite
 
-				bool solidOther = otherTex->GetPixelData(positionOther.x, positionOther.y) != 0;
+				bool solidOther = otherTex->GetPixelData(positionOther.x, positionOther.y) != 0;//check if pixel is solid
 
-				if (solidThis && solidOther) return true;
+				if (solidThis && solidOther) return true; // if both solid, COLLISION DETECTED!!!
 			}
 		}
 	}
