@@ -68,16 +68,32 @@ void cPlayerCar::update(double deltaTime)
 		spriteRotation = 10.0f;
 
 	}
-
-	if (m_InputMgr->isKeyDown(VK_LEFT) && spritePos2D.x > boundryX[0])
+	if (m_InputMgr->getController(0).GetState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT && spritePos2D.x < boundryX[1])
+	{
+		spritePos2D.x += speedX * float(deltaTime);
+		spriteRotation = 10.0f;
+		dpadRight = true;
+	}
+	else dpadRight = false;
+	if (m_InputMgr->isKeyDown(VK_LEFT)  && spritePos2D.x > boundryX[0])
 	{
 		spritePos2D.x -= speedX * deltaTime;
 		spriteRotation = -10.0f;
 	}
+	if (m_InputMgr->getController(0).GetState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT && spritePos2D.x > boundryX[0])
+	{
+		spritePos2D.x -= speedX * deltaTime;
+		spriteRotation = -10.0f;
+		dpadLeft = true;
+	}
+	else dpadLeft = false;
 
 	if (!m_InputMgr->isKeyDown(VK_LEFT) && !m_InputMgr->isKeyDown(VK_RIGHT))
 	{
-		spriteRotation = 0.0f;
+		if (!dpadLeft && !dpadRight)
+		{
+			spriteRotation = 0.0f;
+		}
 	}
 
 	if (playerHealth > 0)
@@ -90,6 +106,18 @@ void cPlayerCar::update(double deltaTime)
 		m_SoundMgr->getSnd("Failure")->playAudio(AL_TRUE);
 		setActive(false);
 		cout << "\n Player Dead!";
+	}
+
+	m_InputMgr->getController(0).Vibrate(vibrateStrength, vibrateStrength);
+
+	if (vibrateStrength > 0)
+	{
+		vibrateTimer += deltaTime;
+		if (vibrateTimer > 0.5f) 
+		{ 
+			vibrateStrength = 0; 
+			vibrateTimer = 0;
+		}
 	}
 }
 
@@ -109,6 +137,7 @@ void cPlayerCar::ReduceHealth()
 	playerHealth--;
 	m_SoundMgr->getSnd("Explosion")->playAudio(AL_TRUE);
 	cout << "\n Health Decrease!";
+	vibrateStrength = 3000;
 }
 
 void cPlayerCar::SetPlayerHealth(int value)

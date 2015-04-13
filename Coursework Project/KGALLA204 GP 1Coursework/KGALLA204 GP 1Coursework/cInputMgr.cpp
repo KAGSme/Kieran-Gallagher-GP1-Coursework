@@ -151,3 +151,15 @@ void cInputMgr::clearBuffers(BYTE bufferToClear)
 	}
 }
 
+void cInputMgr::addController(Xcontroller* Xgamepad, int number)
+{
+	Xctrl[number] = Xgamepad;
+}
+
+Xcontroller cInputMgr::getController(int number)
+{
+	return *Xctrl[number];
+}
+
+
+

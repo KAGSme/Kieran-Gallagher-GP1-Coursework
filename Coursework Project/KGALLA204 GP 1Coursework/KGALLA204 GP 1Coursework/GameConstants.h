@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <iomanip>
+#include <Xinput.h>
 // Image Texture loading library
 #include "IL\il.h"
 #include "IL\ilu.h"
@@ -34,6 +35,7 @@
 #include <algorithm>
 // Textures & Sprites
 #include "cTexture.h"
+#include "Xcontroller.h"
 
 
 using namespace std;

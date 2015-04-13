@@ -1,8 +1,7 @@
 /*
 ============
-cPlayerCar.cpp
+cPlayerCar.h
 - Header file for class definition - SPECIFICATION
-- header file for the cBkGround class which is a child of the cSprite class
 ============
 */
 #ifndef CPLAYERCAR_H
@@ -19,6 +18,10 @@ private:
 	int playerHealth;
 	bool isAlive;
 	float engineEffectTimer = 0;
+	bool dpadLeft;
+	bool dpadRight;
+	int vibrateStrength = 0;
+	float vibrateTimer = 0;
 
 public:
 	cPlayerCar();

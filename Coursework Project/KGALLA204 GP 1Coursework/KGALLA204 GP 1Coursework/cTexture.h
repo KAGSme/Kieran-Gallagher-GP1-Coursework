@@ -16,7 +16,7 @@ private:
 	GLuint aTextureInfo;
 	GLsizei textureWidth;
 	GLsizei textureHeight;
-	int pitch;
+	int bitMapPitch;
 	ILuint ilTextureID;
 	char *txData;
 

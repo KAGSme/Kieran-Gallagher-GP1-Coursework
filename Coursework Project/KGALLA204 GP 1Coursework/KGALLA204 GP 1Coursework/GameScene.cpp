@@ -22,7 +22,7 @@ GameScene::GameScene(int windowWidthValue, int windowHeightValue, cInputMgr* the
 	LPCSTR UIfont[2] = { "Fonts/Dense-Regular.ttf", "Fonts/wendy.ttf" };
 	theFontMgr->addFont("Dense", UIfont[0], 50);
 	theFontMgr->addFont("8-BIT", UIfont[1], 100);
-	theFontMgr->addFont("8-BIT_small", UIfont[1], 40);
+	theFontMgr->addFont("8-BIT_small", UIfont[1], 30);
 	theFontMgr->addFont("8-BIT_reallySmall", UIfont[1], 20);
 	theFontMgr->addFont("8-BIT_black", UIfont[1], 100);
 	theFontMgr->getFont("8-BIT_black")->SetColour(0, 0, 0);
@@ -143,7 +143,7 @@ void GameScene::MainGame(double elapsedTime)
 		playerCar.SetPlayerHealth(3);
 		playerCar.setActive(true);
 
-		enemySpawner = new cEnemySpawner(&playerCar, boundriesX, 120, 300, &texturePlayer);
+		enemySpawner = new cEnemySpawner(&playerCar, boundriesX, 150, 400, &texturePlayer);
 
 		timer = 0;
 
@@ -191,6 +191,7 @@ void GameScene::MainGame(double elapsedTime)
 		if (!playerCar.isActive())
 		{
 			delete enemySpawner;
+			Sleep(1000);
 			sceneIsInitialised = false;
 			scenes = scene_end_game;
 		}
@@ -202,12 +203,13 @@ void GameScene::MainMenu(double elapsedTime)
 {
 	if (!sceneIsInitialised)
 	{
+		theInputMgr->getController(0).Vibrate(0, 0);
 		cout << "\n Main Menu";
 		sceneIsInitialised = true;
 	}
 	if (sceneIsInitialised)
 	{
-		if (theInputMgr->isKeyDown(VK_RETURN))
+		if (theInputMgr->isKeyDown(VK_RETURN) || theInputMgr->getController(0).GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A)
 		{
 			sceneIsInitialised = false;
 			scenes = scene_main_game;
@@ -217,10 +219,12 @@ void GameScene::MainMenu(double elapsedTime)
 		controlsUI[0].render();
 		controlsUI[1].render();
 
+
 		theFontMgr->getFont("8-BIT")->printText("SPEEDY TRAFFIC", FTPoint(650, -200, 0.f));
-		theFontMgr->getFont("8-BIT_small")->printText("Left/right Arrow Keys to move left/right!", FTPoint(520, -400, 0.f));
-		theFontMgr->getFont("8-BIT_small")->printText("Press Enter Key to Start!", FTPoint(450, -500, 0.f));
-		theFontMgr->getFont("8-BIT_reallySmall")->printText("By Kieran Gallagher", FTPoint(10, -20, 0.f));
+		theFontMgr->getFont("8-BIT_small")->printText("Left/right Arrow Keys or use D-PAD to move left/right!", FTPoint(520, -400, 0.f));
+		theFontMgr->getFont("8-BIT_small")->printText("Press Enter Key or 'A'button to Start!", FTPoint(450, -500, 0.f));
+		theFontMgr->getFont("8-BIT_reallySmall")->printText("Game By Kieran Gallagher", FTPoint(10, -20, 0.f));
+		theFontMgr->getFont("8-BIT_reallySmall")->printText("Royalty free Music /sound effects By Evan King", FTPoint(10, -40, 0.f));
 
 	}
 }
@@ -231,6 +235,8 @@ void GameScene::EndScene(double elapsedTime)
 	if (!sceneIsInitialised)
 	{
 		cout << "\n End Scene";
+
+		theInputMgr->getController(0).Vibrate(0, 0);
 
 		ostringstream finalScoreMessage;
 		finalScoreMessage << setprecision(4) << (timer * 100);
@@ -243,7 +249,7 @@ void GameScene::EndScene(double elapsedTime)
 	}
 	if (sceneIsInitialised)
 	{
-		if (theInputMgr->isKeyDown(VK_RETURN))
+		if (theInputMgr->isKeyDown(VK_RETURN) || theInputMgr->getController(0).GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A)
 		{
 			sceneIsInitialised = false;
 			scenes = scene_main_game;
@@ -253,6 +259,6 @@ void GameScene::EndScene(double elapsedTime)
 		controlsUI[1].render();
 
 		theFontMgr->getFont("8-BIT_black")->printText(scoreDisplay.c_str(), FTPoint(300, -windowHeight / 2 - 30, 0.f));
-		theFontMgr->getFont("8-BIT_small")->printText("Press Enter Key to Retry!", FTPoint(450, -500, 0.f));
+		theFontMgr->getFont("8-BIT_small")->printText("Press Enter Key or 'A'button to Retry!", FTPoint(450, -500, 0.f));
 	}
 }

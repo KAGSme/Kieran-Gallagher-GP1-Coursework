@@ -271,7 +271,7 @@ windowOGL*  cWNDManager::getAttachedWND()
 {
 	return m_winOGL;
 }
-/*code not in use
+/*code not in use--------------------------------------------------------------------
 void cWNDManager::StartCounter()
 {
 	//code taken from http://stackoverflow.com/questions/1739259/how-to-use-queryperformancecounter from user Ramónster

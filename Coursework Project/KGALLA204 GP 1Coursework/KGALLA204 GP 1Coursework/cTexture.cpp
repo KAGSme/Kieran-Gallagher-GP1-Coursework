@@ -68,9 +68,9 @@ bool cTexture::createTexture(LPCSTR theFilename) 	// create the texture for use.
 	textureWidth = ilGetInteger(IL_IMAGE_WIDTH);
 	textureHeight = ilGetInteger(IL_IMAGE_HEIGHT);
 
-	pitch = ilGetInteger(IL_IMAGE_BPP);
-	txData = new char[textureWidth * textureHeight * pitch];
-	memcpy(txData, ilGetData(), sizeof(char)* textureWidth * textureHeight * pitch);
+	bitMapPitch = ilGetInteger(IL_IMAGE_BPP);
+	txData = new char[textureWidth * textureHeight * bitMapPitch];
+	memcpy(txData, ilGetData(), sizeof(char)* textureWidth * textureHeight * bitMapPitch);
 
 	glGenTextures(1, &GLTextureID); // GLTexture name generation 
 	glBindTexture(GL_TEXTURE_2D, GLTextureID); // Binding of GLtexture name 
@@ -116,6 +116,6 @@ GLsizei cTexture::getTHeight() 						// Return height of texture;
 
 int cTexture::GetPixelData(int x, int y)
 {
-	int pixel = (x + y * textureWidth) * pitch + 3;
+	int pixel = (x + y * textureWidth) * bitMapPitch + 3;
 	return txData[pixel];
 }

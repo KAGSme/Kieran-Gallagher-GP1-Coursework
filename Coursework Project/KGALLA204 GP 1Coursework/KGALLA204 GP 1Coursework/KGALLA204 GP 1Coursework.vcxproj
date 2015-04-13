@@ -83,6 +83,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="cPlayerCar.cpp" />
     <ClCompile Include="windowOGL.cpp" />
+    <ClCompile Include="Xcontroller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBkGround.h" />
@@ -99,8 +100,10 @@
     <ClInclude Include="GameConstants.h" />
     <ClInclude Include="cPlayerCar.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Includes\Xinput.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="windowOGL.h" />
+    <ClInclude Include="Xcontroller.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Libraries\alut.lib" />
@@ -110,6 +113,7 @@
     <Library Include="Libraries\ILU.lib" />
     <Library Include="Libraries\ILUT.lib" />
     <Library Include="Libraries\OpenAL32.lib" />
+    <Library Include="Libraries\Xinput.lib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SpeedyTrafficProjectClassDiagram.cd" />
