@@ -6,8 +6,9 @@ cEnemySpawner.cpp
 */
 #include "cEnemySpawner.h"
 
-cEnemySpawner::cEnemySpawner(cPlayerCar* playerCar, int boundries[2], int speedYValue, int speedBoundryYValue) // Default Constructer
+cEnemySpawner::cEnemySpawner(cPlayerCar* playerCar, int boundries[2], int speedYValue, int speedBoundryYValue, cTexture* playerTex) // Default Constructer
 {
+	playerTexture = playerTex;
 	spawnBoundries[0] = boundries[0];
 	spawnBoundries[1] = boundries[1];
 	srand((unsigned int)time(NULL));
@@ -68,7 +69,7 @@ void cEnemySpawner::update(double deltaTime)
 	{
 		(*carIterator)->update(deltaTime);
 		(*carIterator)->render();
-		if ((*carIterator)->collidedWith((*carIterator)->getBoundingRect(), thePlayerCar->getBoundingRect()))
+		if ((*carIterator)->PixelCollisionWith((*carIterator), thePlayerCar, &textureEnemy, playerTexture))
 		{
 			thePlayerCar->ReduceHealth();
 			carIterator = cars.erase(carIterator);

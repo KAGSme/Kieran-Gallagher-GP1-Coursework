@@ -309,10 +309,10 @@ void cSprite::renderCollisionBox()
 	//glVertex2f(boundingRect.right, boundingRect.bottom);
 	//glVertex2f(boundingRect.right, 0);
 	glBegin(GL_QUADS);
-	glVertex2f(0, 0);
-	glVertex2f(textureWidth, 0);
-	glVertex2f(textureWidth, textureHeight);
-	glVertex2f(0, textureHeight);
+	glVertex2f(0 - textureWidth/2, 0 - textureHeight/2);
+	glVertex2f(textureWidth - textureWidth / 2, 0 - textureHeight / 2);
+	glVertex2f(textureWidth - textureWidth / 2, textureHeight - textureHeight / 2);
+	glVertex2f(0 - textureWidth / 2, textureHeight - textureHeight/2);
 
 
 	glEnd();
@@ -320,14 +320,13 @@ void cSprite::renderCollisionBox()
 	glPopMatrix();
 }
 
-glm::ivec2 cSprite::getTextureDimensions()
+glm::vec2 cSprite::getTextureDimensions()
 {
-	return glm::ivec2(textureWidth, textureHeight);
+	return glm::vec2(textureWidth, textureHeight);
 }
 
 glm::mat4x4 cSprite::GetWorldMatrix()
 {
-	glm::mat4x4 matrix;
 	matrix = glm::mat4x4(1);
 	matrix = glm::translate(matrix, glm::vec3(spritePos2D.x, spritePos2D.y, 0));
 	matrix = glm::rotate(matrix, spriteRotation, glm::vec3(0, 0, 1));
@@ -341,20 +340,32 @@ Use this method to check for pixel collisions
 ==========================================================================
 */
 
-void cSprite::PixelCollision(cSprite* thisSprite, cSprite* otherSprite)
+bool cSprite::PixelCollisionWith(cSprite* thisSprite, cSprite* otherSprite, cTexture* thisTex, cTexture* otherTex)
 {
 	glm::mat4x4 tMat = thisSprite->GetWorldMatrix();
 	glm::mat4x4 oMat = otherSprite->GetWorldMatrix();
+	glm::mat4x4 oMatInverse = glm::inverse(oMat);
 
-	glm::ivec2 tTextureSize = glm::ivec2(thisSprite->getTextureDimensions().x, thisSprite->getTextureDimensions().y);
+	glm::ivec2 tTextureSize = glm::ivec2(thisSprite->getTextureDimensions().x/2, thisSprite->getTextureDimensions().y/2);
 	glm::ivec2 oTextureSize = glm::ivec2(otherSprite->getTextureDimensions().x/2, otherSprite->getTextureDimensions().y/2);
-	for (int x = 0; x < thisSprite->getTextureDimensions().x, x++;)
+	for (int x = 0; x < thisSprite->getTextureDimensions().x; x++)
 	{
-		for (int y = 0; y < thisSprite->getTextureDimensions().y, y++;)
+		for (int y = 0; y < thisSprite->getTextureDimensions().y; y++)
 		{
+			bool solidThis = thisTex->GetPixelData(x, y) != 0;
+			if (solidThis)
+			{
+				glm::vec4 pos = tMat * (glm::vec4(x, y, 0, 1) - glm::vec4(tTextureSize.x, tTextureSize.y, 0, 0));
+				glm::vec4 positionOther = oMatInverse * pos + glm::vec4(oTextureSize.x, oTextureSize.y, 0, 0);
 
+				if (positionOther.x < 0 || positionOther.y < 0 || 
+					positionOther.x >= otherSprite->getTextureDimensions().x || positionOther.y >= otherSprite->getTextureDimensions().y)continue;
+
+				bool solidOther = otherTex->GetPixelData(positionOther.x, positionOther.y) != 0;
+
+				if (solidThis && solidOther) return true;
+			}
 		}
 	}
-
-
+	return false;
 }

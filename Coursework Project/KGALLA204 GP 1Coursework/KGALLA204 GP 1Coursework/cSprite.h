@@ -26,6 +26,8 @@ protected:
 	float m_Radius;
 	bool mActive;
 
+	glm::mat4x4 matrix;
+
 	//texturing
 	glm::vec2 spriteVertexData[4];
 	glm::vec2 spriteTexCoordData[4];
@@ -50,7 +52,7 @@ public:
 	void setTexture(GLuint GLtexID);  // set the image of the sprite
 	void setTextureDimensions(int texWidth, int textHeight);
 	void setSpriteTranslation(glm::vec2 translation); // Set the amount of movement on the x & y axis
-	glm::ivec2 getTextureDimensions();
+	glm::vec2 getTextureDimensions();
 	glm::vec2 getSpriteTranslation();  // return the amount of movement on the x & y axis
 	void setSpriteCentre(); // Set the sprites centre point
 	glm::vec2 getSpriteCentre();  // return the sprites centre point
@@ -69,6 +71,6 @@ public:
 	bool SphereSphereCollision(glm::vec2 spritePosition, float spriteRadius);
 	virtual void renderCollisionBox();				// Use this function to show the collision box
 	glm::mat4x4 GetWorldMatrix();
-	void PixelCollision(cSprite* thisSprite, cSprite* otherSprite); //Use this for per pixel collision
+	bool cSprite::PixelCollisionWith(cSprite* thisSprite, cSprite* otherSprite, cTexture* thisTex, cTexture* otherTex);
 };
 #endif

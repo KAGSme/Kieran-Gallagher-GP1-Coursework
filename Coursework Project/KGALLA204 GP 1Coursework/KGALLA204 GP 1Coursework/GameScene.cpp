@@ -143,7 +143,7 @@ void GameScene::MainGame(double elapsedTime)
 		playerCar.SetPlayerHealth(3);
 		playerCar.setActive(true);
 
-		enemySpawner = new cEnemySpawner(&playerCar, boundriesX, 120, 300);
+		enemySpawner = new cEnemySpawner(&playerCar, boundriesX, 120, 300, &texturePlayer);
 
 		timer = 0;
 
@@ -234,6 +234,7 @@ void GameScene::EndScene(double elapsedTime)
 
 		ostringstream finalScoreMessage;
 		finalScoreMessage << setprecision(4) << (timer * 100);
+		scoreDisplay = "";
 		scoreDisplay.append("YOU DIE WITH ");
 		scoreDisplay.append(finalScoreMessage.str());
 		scoreDisplay.append(" POINTS");

@@ -54,6 +54,7 @@ void cPlayerCar::update(double deltaTime)
 	engineEffectTimer += deltaTime;
 
 	setBoundingRect(&boundingRect);
+	//renderCollisionBox();
 
 	if (engineEffectTimer >= 0.27f)
 	{
