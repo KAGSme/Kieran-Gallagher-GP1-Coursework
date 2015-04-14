@@ -343,7 +343,7 @@ psuedo code can be found here http://gamedev.stackexchange.com/questions/23603/h
 
 bool cSprite::PixelCollisionWith(cSprite* thisSprite, cSprite* otherSprite, cTexture* thisTex, cTexture* otherTex)
 {
-	glm::mat4x4 tMat = thisSprite->GetWorldMatrix();
+	glm::mat4x4 tMat = thisSprite->GetWorldMatrix();//generates Sprite world matrix
 	glm::mat4x4 oMat = otherSprite->GetWorldMatrix();
 	glm::mat4x4 oMatInverse = glm::inverse(oMat);//generates inverse of otherSprite world matrix
 
